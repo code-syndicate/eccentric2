@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: "Outfit";
+}
+
+@keyframes scroll {
+  0% {
+    transform: translate(0%);
+  }
+
+  100% {
+    transform: translate(-250%);
+  }
+}
+
+.h-scroll {
+  animation: scroll 25s linear infinite alternate 2s;
+}
+
+.no-scrollbar {
+  overflow: auto;
+  scrollbar-width: thin; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer and Edge */
+}
+
+/* Hide scrollbar for WebKit browsers (Chrome, Safari) */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for Firefox */
+.no-scrollbar::-moz-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for Internet Explorer and Edge */
+.no-scrollbar {
+  -ms-overflow-style: none;
+}
+
+@layer components {
+  .transition-flow {
+    @apply transition-colors duration-[350];
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r  from-textColor  to-textColor/50  bg-clip-text text-transparent;
+  }
+
+  .hover-text {
+    @apply transition-flow hover:cursor-pointer hover:text-textColor;
+  }
+
+  .transition-flow {
+    @apply transition-all   duration-[400];
+  }
+
+  .btn-primary {
+    @apply inline-flex border border-textColor/40 hover:border-textColor justify-center items-center  space-x-4 bg-bgColor2 rounded-md px-6 py-3 hover:bg-black/10  hover:scale-90 transform transition-flow disabled:opacity-40 disabled:pointer-events-none disabled:cursor-not-allowed;
+  }
+
+  .btn-basic {
+    @apply inline-flex text-bgColor2 justify-center items-center  space-x-4 bg-textColor/60   px-6 py-3 hover:bg-textColor/80 transition-flow disabled:opacity-40 disabled:pointer-events-none disabled:cursor-not-allowed;
+  }
+}
