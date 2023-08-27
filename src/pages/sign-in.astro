@@ -1,0 +1,9 @@
+---
+import AuthLayout from "../layouts/AuthLayout.astro";
+import config from "../config";
+import SignInForm from "../components/SignInForm";
+---
+
+<AuthLayout title={"Sign in - " + config.appName}>
+  <SignInForm client:visible />
+</AuthLayout>

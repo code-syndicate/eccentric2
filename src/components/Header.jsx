@@ -6,21 +6,17 @@ import AvatarImage from "../assets/avatar.png";
 
 function Header() {
   return (
-    <header className="bg-bg2 py-2 lg:py-6 w-full flex flex-row justify-between items-center px-6">
+    <header className="bg-bg2 z-20 fixed inset-x-0 top-0 py-2 lg:py-6 w-full flex flex-row justify-between items-center px-6">
       <div className=" lg:hidden  ">
         <VscMenu className="text-text1 text-3xl " />
       </div>
-      <div className="hidden lg:flex flex-row justify-between w-[40%]">
+      <div className="hidden lg:flex flex-row justify-between lg:w-[50%] xl:w-[40%]">
         <div className="">
           <img src={LogoImage} alt="Logo" className="w-40" />
         </div>
 
         <div className="relative hidden lg:block ">
-          <input
-            className="rounded-md border text-sm border-text1/20 focus:border-text1/80 transition-flow text-text1 outline-none py-2 px-4 pr-16 bg-bg2"
-            type="text"
-            placeholder="Search"
-          />
+          <input className="field" type="text" placeholder="Search" />
 
           <BsSearch className="text-text1/80 text-lg absolute top-[50%] right-[5%] text-text1 -translate-x-1/2 -translate-y-1/2" />
         </div>

@@ -1,8 +1,11 @@
 ---
 import config from "../config";
 import Layout from "../layouts/Layout.astro";
+import Dash from "../components/Dash";
 ---
 
 <Layout title={config.appName}>
-  <main>Body</main>
+  <main class="ml-[20%] w-[80%] bg-red-200">
+    <Dash />
+  </main>
 </Layout>

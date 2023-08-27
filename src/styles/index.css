@@ -65,4 +65,8 @@
   .btn-basic {
     @apply inline-flex text-bgColor2 justify-center items-center  space-x-4 bg-textColor/60   px-6 py-3 hover:bg-textColor/80 transition-flow disabled:opacity-40 disabled:pointer-events-none disabled:cursor-not-allowed;
   }
+
+  .field {
+    @apply rounded-md border text-sm border-text1/20 focus:border-text1/80 transition-flow text-text1 outline-none py-2 px-4 pr-16 bg-bg2;
+  }
 }
