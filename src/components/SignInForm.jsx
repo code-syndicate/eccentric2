@@ -1,6 +1,11 @@
 import { Form, Formik, Field, ErrorMessage } from "formik";
 import LogoImage from "../assets/logo.png";
 import * as Yup from "yup";
+import { useState } from "react";
+import { makeUrl, fetchUtil } from "../lib/utils";
+import config from "../config";
+import Spinner from "./Spinner";
+import { setNotifyMessage } from "../lib/atoms";
 
 const schema = Yup.object().shape({
   email: Yup.string()
@@ -12,6 +17,45 @@ const schema = Yup.object().shape({
 });
 
 function SignInForm() {
+  const [loading, setLoading] = useState(false);
+
+  async function loginUser(values) {
+    const res = await fetchUtil({
+      url: makeUrl(config.apiEndpoints.logIn),
+      method: "POST",
+      body: JSON.stringify(values),
+    });
+
+    if (res.success) {
+      setNotifyMessage({
+        show: true,
+        title: "Success",
+        content: "Log in successful.",
+        allowclose: false,
+        onAccept: () => {
+          window.location.href = "/dashboard";
+          // redirect('/sign-in')
+        },
+        onAcceptText: "Proceed to dashboard",
+      });
+    } else {
+      setNotifyMessage({
+        show: true,
+        title: "Something went wrong",
+        content: res.error?.message,
+        allowclose: true,
+      });
+    }
+  }
+
+  async function handleSubmit(values) {
+    setLoading(true);
+
+    await loginUser(values);
+
+    setLoading(false);
+  }
+
   return (
     <div className="bg-[url('/bg.svg')] flex flex-col justify-center items-center">
       <Formik
@@ -20,9 +64,7 @@ function SignInForm() {
           email: "",
           password: "",
         }}
-        onSubmit={(values) => {
-          console.log(values);
-        }}
+        onSubmit={handleSubmit}
       >
         {({ errors, isValid }) => {
           return (
@@ -77,12 +119,12 @@ function SignInForm() {
 
               <div className="w-[80%] mt-8">
                 <button
-                  disabled={!isValid}
+                  disabled={!isValid || loading}
                   className="bg-text1/80 hover:bg-text1/90 transition-flow text-bg1 px-8 disabled:opacity-40 disabled:pointer-events-none w-full py-2 text-center rounded outline-none "
                   type="submit"
                   role="form"
                 >
-                  Sign In
+                  {loading ? <Spinner size="tiny" /> : "Sign In"}
                 </button>
               </div>
             </Form>

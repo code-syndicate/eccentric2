@@ -9,6 +9,12 @@ module.exports = {
         bg3: "#171F2A",
         text1: "#FFFFFF",
         theme: "#3EBF81",
+        primary: "#FFFFFF",
+        background: "#131720",
+      },
+
+      animation: {
+        "spin-fast": "spin 0.4s linear infinite",
       },
     },
   },

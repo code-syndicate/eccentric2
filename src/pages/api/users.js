@@ -1,21 +1,55 @@
-import { User } from "../../../lib/models/user";
+import { User } from "../../lib/models/user";
+import { hashPassword } from "../../lib/hashing";
+import dbConnect from "../../lib/dbConnect";
 
-export async function post({ params, request }) {
-  const body = await request.json();
+export async function post({ request }) {
+  if (request.headers.get("Content-Type") === "application/json") {
+    const body = JSON.parse(await request.json());
 
-  console.log(body);
+    if (body.password1 !== body.password2) {
+      return new Response(
+        JSON.stringify({ message: "Passwords do not match!" }),
+        {
+          headers: { "Content-Type": "application/json" },
+          status: 400,
+        }
+      );
+    }
 
-  const newUser = await User.create({
-    firstName: body.firstName,
-    lastName: body.lastName,
-    email: body.email,
-    password: body.password,
-  });
+    await dbConnect();
 
-  await newUser.save();
+    const existingUser = await User.findOne({ email: body.email })
+      .lean()
+      .exec();
 
-  return new Response(JSON.stringify(newUser), {
-    headers: { "Content-Type": "application/json" },
-    status: 200,
-  });
+    // console.log(" Existing user: ", existingUser);
+
+    if (existingUser) {
+      return new Response(JSON.stringify({ message: "User already exists" }), {
+        headers: { "Content-Type": "application/json" },
+        status: 400,
+      });
+    }
+
+    const newUser = await User.create({
+      firstName: body.firstName,
+      lastName: body.lastName,
+      email: body.email,
+      password: hashPassword(body.password2),
+    });
+
+    // console.log(newUser);
+
+    return new Response(JSON.stringify(newUser), {
+      headers: { "Content-Type": "application/json" },
+      status: 200,
+    });
+  }
+
+  return new Response(
+    JSON.stringify({
+      message: "Invalid Content-Type",
+    }),
+    { status: 400, statusText: "Bad Request" }
+  );
 }

@@ -1,0 +1,26 @@
+---
+import config from "../config";
+import Layout from "../layouts/Layout.astro";
+import Dash from "../components/Dash";
+import { checkAuth } from "../lib/checkauth";
+
+if (!Astro.cookies.has(config.authCookieKey)) {
+  return Astro.redirect("/sign-in");
+}
+
+const authUser = Astro.cookies.get(config.authCookieKey).value;
+
+const isAuth = await checkAuth({
+  email: authUser,
+});
+
+if (!isAuth) {
+  return Astro.redirect("/sign-in");
+}
+---
+
+<Layout title={config.appName}>
+  <main class="ml-[20%] w-[80%] bg-red-200">
+    <Dash />
+  </main>
+</Layout>

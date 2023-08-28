@@ -1,6 +1,11 @@
 import { Form, Formik, Field, ErrorMessage } from "formik";
 import LogoImage from "../assets/logo.png";
 import * as Yup from "yup";
+import { useState } from "react";
+import { makeUrl, fetchUtil } from "../lib/utils";
+import config from "../config";
+import Spinner from "./Spinner";
+import { setNotifyMessage } from "../lib/atoms";
 
 const schema = Yup.object().shape({
   firstName: Yup.string()
@@ -21,21 +26,69 @@ const schema = Yup.object().shape({
 
   password2: Yup.string()
     .min(8, " Must be 8 characters or more")
-    .required("Password is required"),
+    .required("Password is required")
+    .test("passwords-match", "Passwords must match", function (value) {
+      return this.parent.password1 === value;
+    }),
 });
 
 function SignInForm() {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [user, setUser] = useState(null);
+
+  async function createUser(values) {
+    const res = await fetchUtil({
+      url: makeUrl(config.apiEndpoints.createUser),
+      method: "POST",
+      body: JSON.stringify(values),
+    });
+
+    if (res.success) {
+      setNotifyMessage({
+        show: true,
+        title: "Success",
+        content: "Account created successfully",
+        allowclose: false,
+        onAccept: () => {
+          window.location.href = "/sign-in";
+          // redirect('/sign-in')
+        },
+        onAcceptText: "Sign In",
+      });
+    } else {
+      setError("Something went wrong");
+      setNotifyMessage({
+        show: true,
+        title: "Something went wrong",
+        content: res.error?.message,
+        allowclose: true,
+      });
+    }
+  }
+
+  async function handleSubmit(values) {
+    setLoading(true);
+    setError(null);
+    setUser(null);
+
+    await createUser(values);
+
+    setLoading(false);
+  }
+
   return (
     <div className="bg-[url('/bg.svg')] flex flex-col justify-center items-center mt-8">
       <Formik
         validationSchema={schema}
         initialValues={{
+          firstName: "",
+          lastName: "",
           email: "",
-          password: "",
+          password1: "",
+          password2: "",
         }}
-        onSubmit={(values) => {
-          console.log(values);
-        }}
+        onSubmit={handleSubmit}
       >
         {({ isValid }) => {
           return (
@@ -121,12 +174,12 @@ function SignInForm() {
 
               <div className="w-[80%] mt-8">
                 <button
-                  disabled={!isValid}
+                  disabled={!isValid || loading}
                   className="bg-text1/80 hover:bg-text1/90 transition-flow text-bg1 px-8 disabled:opacity-40 disabled:pointer-events-none w-full py-2 text-center rounded outline-none "
                   type="submit"
                   role="form"
                 >
-                  Sign Up
+                  {loading ? <Spinner size="tiny" /> : "Sign Up"}
                 </button>
               </div>
             </Form>
