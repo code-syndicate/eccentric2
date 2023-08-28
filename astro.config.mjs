@@ -12,7 +12,7 @@ export default defineConfig({
   adapter: vercel(),
   vite: {
     ssr: {
-      noExternal: ["react-icons"],
+      noExternal: ["react-icons", "react-reveal"],
     },
   },
 });
