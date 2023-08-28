@@ -4,6 +4,7 @@ import Layout from "../layouts/Layout.astro";
 import Dash from "../components/Dash";
 import { checkAuth } from "../lib/checkauth";
 
+export const prerender = true;
 if (!Astro.cookies.has(config.authCookieKey)) {
   return Astro.redirect("/sign-in");
 }
