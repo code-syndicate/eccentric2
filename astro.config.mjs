@@ -10,10 +10,4 @@ export default defineConfig({
   integrations: [react(), tailwind()],
   output: "server",
   adapter: vercel(),
-
-  vite: {
-    ssr: {
-      noExternal: ["react-icons"],
-    },
-  },
 });
