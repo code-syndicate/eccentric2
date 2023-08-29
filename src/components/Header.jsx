@@ -1,14 +1,27 @@
 import LogoImage from "../assets/logo.png";
-import { BsSearch, BsChat, BsBell } from "react-icons/bs";
+import { BsSearch, BsChat, BsBell, BsX } from "react-icons/bs";
 import { VscMenu } from "react-icons/vsc";
-
+import { $sidebar, setShowSidebar } from "../lib/atoms";
 import AvatarImage from "../assets/avatar.png";
+import { useStore } from "@nanostores/react";
 
 function Header() {
+  const sidebarState = useStore($sidebar);
+
   return (
-    <header className="bg-bg2 z-20 fixed inset-x-0 top-0 py-2 lg:py-6 w-full flex flex-row justify-between items-center px-6">
+    <header className="bg-bg2 z-40 fixed inset-x-0 top-0 py-2 lg:py-6 w-full flex flex-row justify-between items-center px-6">
       <div className=" lg:hidden  ">
-        <VscMenu className="text-text1 text-3xl " />
+        {sidebarState.show ? (
+          <BsX
+            className="text-text1 text-3xl "
+            onClick={() => setShowSidebar(false)}
+          />
+        ) : (
+          <VscMenu
+            className="text-text1 text-3xl "
+            onClick={() => setShowSidebar(true)}
+          />
+        )}
       </div>
       <div className="hidden lg:flex flex-row justify-between lg:w-[50%] xl:w-[40%]">
         <div className="">

@@ -1,10 +1,11 @@
 import { User } from "../../lib/models/user";
-import { hashPassword } from "../../lib/hashing";
 import dbConnect from "../../lib/dbConnect";
+import config from "../../config";
+import { hashPassword } from "../../lib/hashing";
 
 export const prerender = false;
 
-export async function post({ request }) {
+export async function post({ request, cookies, redirect }) {
   if (request.headers.get("Content-Type") === "application/json") {
     const body = JSON.parse(await request.json());
 
@@ -17,35 +18,33 @@ export async function post({ request }) {
         }
       );
     }
-
     await dbConnect();
 
-    const existingUser = await User.findOne({ email: body.email })
-      .lean()
-      .exec();
+    try {
+      const authUser = await User.authenticate(
+        cookies.get(config.authCookieKey).value,
+        body.password
+      );
 
-    // console.log(" Existing user: ", existingUser);
+      authUser.password = hashPassword(body.password2);
 
-    if (existingUser) {
-      return new Response(JSON.stringify({ message: "User already exists" }), {
+      await authUser.save();
+
+      cookies.delete(config.authCookieKey, { path: "/" });
+
+      return new Response(JSON.stringify(authUser), {
         headers: { "Content-Type": "application/json" },
-        status: 400,
+        status: 200,
       });
+    } catch (err) {
+      return new Response(
+        JSON.stringify({ message: "Current password is invalid!" }),
+        {
+          headers: { "Content-Type": "application/json" },
+          status: 400,
+        }
+      );
     }
-
-    const newUser = await User.create({
-      firstName: body.firstName,
-      lastName: body.lastName,
-      email: body.email,
-      password: hashPassword(body.password2),
-    });
-
-    // console.log(newUser);
-
-    return new Response(JSON.stringify(newUser), {
-      headers: { "Content-Type": "application/json" },
-      status: 200,
-    });
   }
 
   return new Response(

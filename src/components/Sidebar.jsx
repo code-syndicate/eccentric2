@@ -1,6 +1,11 @@
-import { BsSpeedometer } from "react-icons/bs";
+import { BsSpeedometer, BsX } from "react-icons/bs";
 import { AiOutlineSetting, AiOutlineWallet } from "react-icons/ai";
 import { MdCurrencyExchange, MdPriceCheck } from "react-icons/md";
+import { useStore } from "@nanostores/react";
+import { $sidebar, setShowSidebar } from "../lib/atoms";
+import { Slide } from "react-reveal";
+import Overlay from "./Overlay";
+import LogoImage from "../assets/logo.png";
 import cn from "classnames";
 
 const items = [
@@ -31,22 +36,73 @@ const items = [
 ];
 
 function Sidebar() {
-  return (
-    <aside className="bg-bg2 w-[80%] lg:w-[25%] px-6 pb-10 pt-32 max-w-[300px] min-h-screen hidden fixed left-0 top-0 bottom-0 lg:flex flex-col justify-start items-center space-y-8  border-r-4 border-white ">
-      {items.map((v, i) => {
-        const Icon = v.icon;
+  const sidebarState = useStore($sidebar);
 
-        return (
-          <div
-            key={i}
-            className="w-full font-semibold text-left text-text1/80 hover:bg-text1/10 cursor-pointer transition-flow rounded border border-text1/20 p-4 capitalize flex flex-row justify-start space-x-4 items-center"
+  return (
+    <>
+      <aside
+        className={
+          "bg-bg2 w-[80%] hidden lg:flex lg:w-[25%] px-6 pb-10 pt-32 max-w-[300px] min-h-screen  fixed left-0 top-0 bottom-0  flex-col justify-start items-center space-y-8  border-r-4 border-white "
+        }
+      >
+        {items.map((v, i) => {
+          const Icon = v.icon;
+
+          return (
+            <div
+              key={i}
+              className="w-full font-semibold text-left text-text1/80 hover:bg-text1/10 cursor-pointer transition-flow rounded border border-text1/20 p-4 capitalize flex flex-row justify-start space-x-4 items-center"
+            >
+              <Icon className="text-2xl" />
+              <span> {v.title} </span>
+            </div>
+          );
+        })}
+      </aside>
+
+      {sidebarState.show && (
+        <Overlay z={3}>
+          <Slide
+            left
+            className="flex w-full flex-row justify-center items-center"
+            duration={300}
           >
-            <Icon className="text-2xl" />
-            <span> {v.title} </span>
-          </div>
-        );
-      })}
-    </aside>
+            <aside
+              className={
+                "bg-bg2 w-[80%] lg:w-[25%] px-6 pb-10 pt-12 max-w-[300px] min-h-screen  fixed left-0 top-0 bottom-0 lg:flex flex-col justify-start items-center space-y-8  border-r-4 border-white "
+              }
+            >
+              <div className=" lg:hidden absolute top-4 right-4  ">
+                {sidebarState.show && (
+                  <BsX
+                    className="text-text1 text-3xl "
+                    onClick={() => setShowSidebar(false)}
+                  />
+                )}
+              </div>
+
+              <div className="">
+                <img src={LogoImage} alt="Logo" className="w-40" />
+              </div>
+
+              {items.map((v, i) => {
+                const Icon = v.icon;
+
+                return (
+                  <div
+                    key={i}
+                    className="w-full font-semibold text-left text-text1/80 hover:bg-text1/10 cursor-pointer transition-flow rounded border border-text1/20 p-4 capitalize flex flex-row justify-start space-x-4 items-center"
+                  >
+                    <Icon className="text-2xl" />
+                    <span> {v.title} </span>
+                  </div>
+                );
+              })}
+            </aside>
+          </Slide>
+        </Overlay>
+      )}
+    </>
   );
 }
 

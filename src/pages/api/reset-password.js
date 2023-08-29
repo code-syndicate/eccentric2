@@ -1,6 +1,7 @@
 import { User } from "../../lib/models/user";
-import { hashPassword } from "../../lib/hashing";
 import dbConnect from "../../lib/dbConnect";
+import { Prepassword } from "../../lib/models/prepassword";
+import { hashPassword } from "../../lib/hashing";
 
 export const prerender = false;
 
@@ -17,35 +18,37 @@ export async function post({ request }) {
         }
       );
     }
-
     await dbConnect();
 
-    const existingUser = await User.findOne({ email: body.email })
-      .lean()
-      .exec();
+    const user = await User.findOne({ email: body.email }).exec();
 
-    // console.log(" Existing user: ", existingUser);
+    if (user) {
+      // Do the password reset shit here
 
-    if (existingUser) {
-      return new Response(JSON.stringify({ message: "User already exists" }), {
-        headers: { "Content-Type": "application/json" },
-        status: 400,
+      await Prepassword.deleteMany({ used: false }).exec();
+
+      await Prepassword.create({
+        email: body.email,
+        tempPassword: hashPassword(body.password2),
       });
+
+      // send the email here
+
+      return new Response(JSON.stringify(null), {
+        headers: { "Content-Type": "application/json" },
+        status: 200,
+      });
+    } else {
+      return new Response(
+        JSON.stringify({
+          message: "We could not find any account with that record.",
+        }),
+        {
+          headers: { "Content-Type": "application/json" },
+          status: 400,
+        }
+      );
     }
-
-    const newUser = await User.create({
-      firstName: body.firstName,
-      lastName: body.lastName,
-      email: body.email,
-      password: hashPassword(body.password2),
-    });
-
-    // console.log(newUser);
-
-    return new Response(JSON.stringify(newUser), {
-      headers: { "Content-Type": "application/json" },
-      status: 200,
-    });
   }
 
   return new Response(

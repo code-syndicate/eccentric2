@@ -2,6 +2,8 @@ import { User } from "../../lib/models/user";
 import dbConnect from "../../lib/dbConnect";
 import config from "../../config";
 
+export const prerender = false;
+
 export async function post({ request, cookies, redirect }) {
   if (request.headers.get("Content-Type") === "application/json") {
     const body = JSON.parse(await request.json());

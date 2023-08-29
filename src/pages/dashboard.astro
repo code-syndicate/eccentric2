@@ -1,4 +1,6 @@
 ---
+export const prerender = false;
+
 import config from "../config";
 import Layout from "../layouts/Layout.astro";
 import Dash from "../components/Dash";
@@ -20,7 +22,7 @@ if (!isAuth) {
 ---
 
 <Layout title={config.appName}>
-  <main class="ml-[20%] w-[80%] bg-red-200">
+  <main class="lg:ml-[20%] pt-20 lg:w-[80%]">
     <Dash />
   </main>
 </Layout>

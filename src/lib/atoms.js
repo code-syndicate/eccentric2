@@ -8,6 +8,10 @@ export const $notify = atom({
   title: "Title",
 });
 
+export const $sidebar = atom({
+  show: false,
+});
+
 export const setNotifyMessage = (obj) => {
   const {
     show = $notify.get().show,
@@ -24,4 +28,8 @@ export const setNotifyMessage = (obj) => {
     content,
     ...rest,
   });
+};
+
+export const setShowSidebar = (show) => {
+  $sidebar.set({ show });
 };

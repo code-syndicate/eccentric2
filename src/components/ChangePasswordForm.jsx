@@ -1,6 +1,11 @@
 import { Form, Formik, Field, ErrorMessage } from "formik";
 import LogoImage from "../assets/logo.png";
 import * as Yup from "yup";
+import { useState } from "react";
+import { makeUrl, fetchUtil } from "../lib/utils";
+import config from "../config";
+import Spinner from "./Spinner";
+import { setNotifyMessage } from "../lib/atoms";
 
 const schema = Yup.object().shape({
   password: Yup.string()
@@ -13,21 +18,62 @@ const schema = Yup.object().shape({
 
   password2: Yup.string()
     .min(8, " Must be 8 characters or more")
-    .required("New Password is required"),
+    .required("New Password is required")
+    .test("passwords-match", "Passwords must match", function (value) {
+      return this.parent.password1 === value;
+    }),
 });
 
 function ChangePasswordForm() {
+  const [loading, setLoading] = useState(false);
+
+  async function changePassword(values) {
+    const res = await fetchUtil({
+      url: makeUrl(config.apiEndpoints.changePassword),
+      method: "POST",
+      body: JSON.stringify(values),
+    });
+
+    if (res.success) {
+      setNotifyMessage({
+        show: true,
+        title: "Success",
+        content: "Password changed successfully.",
+        allowclose: false,
+        onAccept: () => {
+          window.location.href = "/sign-in";
+          // redirect('/sign-in')
+        },
+        onAcceptText: "Proceed to log in",
+      });
+    } else {
+      setNotifyMessage({
+        show: true,
+        title: "Something went wrong",
+        content: res.error?.message,
+        allowclose: true,
+      });
+    }
+  }
+
+  async function handleSubmit(values) {
+    setLoading(true);
+
+    await changePassword(values);
+
+    setLoading(false);
+  }
+
   return (
     <div className="bg-[url('/bg.svg')] flex flex-col justify-center items-center">
       <Formik
         validationSchema={schema}
         initialValues={{
-          email: "",
           password: "",
+          password1: "",
+          password2: "",
         }}
-        onSubmit={(values) => {
-          console.log(values);
-        }}
+        onSubmit={handleSubmit}
       >
         {({ errors, isValid }) => {
           return (
@@ -66,7 +112,7 @@ function ChangePasswordForm() {
                 />
 
                 <p className="text-red-400 text-sm pt-2">
-                  <ErrorMessage name="password" />
+                  <ErrorMessage name="password1" />
                 </p>
               </div>
 
@@ -79,7 +125,7 @@ function ChangePasswordForm() {
                 />
 
                 <p className="text-red-400 text-sm pt-2">
-                  <ErrorMessage name="password" />
+                  <ErrorMessage name="password2" />
                 </p>
               </div>
 
@@ -93,12 +139,12 @@ function ChangePasswordForm() {
 
               <div className="w-[80%] mt-8">
                 <button
-                  disabled={!isValid}
+                  disabled={!isValid || loading}
                   className="bg-text1/80 hover:bg-text1/90 transition-flow text-bg1 px-8 disabled:opacity-40 disabled:pointer-events-none w-full py-2 text-center rounded outline-none "
                   type="submit"
                   role="form"
                 >
-                  Submit
+                  {loading ? <Spinner size="tiny" /> : "Submit"}
                 </button>
               </div>
             </Form>

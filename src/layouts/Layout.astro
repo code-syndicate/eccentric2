@@ -32,9 +32,9 @@ import Sidebar from "../components/Sidebar";
     <title>{title}</title>
   </head>
   <body class="bg-bg1 text-text1">
-    <Header />
+    <Header client:load />
 
     <slot />
-    <Sidebar />
+    <Sidebar client:load />
   </body>
 </html>
