@@ -77,7 +77,7 @@ function ChangePasswordForm() {
       >
         {({ errors, isValid }) => {
           return (
-            <Form className="flex flex-col justify-center items-center space-y-8 mt-32 max-w-md lg:bg-text1/10 px-16 py-12 rounded">
+            <Form className="flex flex-col justify-center items-center space-y-8 mt-24 lg:mt-16 max-w-md lg:bg-text1/10 px-16 py-12 rounded">
               <legend className="text-center text-text1 font-bold text-2xl lg:text-3xl pt-4">
                 Change your password
                 <p className="text-sm font-normal py-2  text-center">
