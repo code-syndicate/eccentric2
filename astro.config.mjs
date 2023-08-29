@@ -17,7 +17,7 @@ export default defineConfig({
 
   vite: {
     ssr: {
-      // noExternal: ["react-icons", "react-reveal"],
+      noExternal: ["react-icons", "react-reveal"],
     },
   },
 });
