@@ -16,8 +16,10 @@ export default defineConfig({
       }),
 
   vite: {
-    ssr: {
-      noExternal: ["react-icons", "react-reveal"],
-    },
+    ssr: import.meta.env.PROD
+      ? {
+          noExternal: ["react-icons", "react-reveal"],
+        }
+      : {},
   },
 });

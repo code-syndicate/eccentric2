@@ -1,0 +1,92 @@
+---
+import config from "../config";
+import Layout from "../layouts/Layout.astro";
+import { checkAuth } from "../lib/checkauth";
+import Footer from "../components/Footer";
+import Prices from "../components/Prices";
+
+export const prerender = false;
+
+if (!Astro.cookies.has(config.authCookieKey)) {
+  return Astro.redirect("/sign-in");
+}
+
+const authUser = Astro.cookies.get(config.authCookieKey).value;
+
+const isAuth = await checkAuth({
+  email: authUser,
+});
+
+if (!isAuth) {
+  return Astro.redirect("/sign-in");
+}
+---
+
+<Layout title={config.appName}>
+  <main class="lg:ml-[20%] pt-20 lg:w-[80%]">
+    <Prices />
+
+    <div
+      class="px-4 pt-8 lg:pt-12 grid grid-cols-12 gap-8 justify-center items-center"
+    >
+      <div class="p-6 rounded-md col-span-12 lg:col-span-4 bg-bg2 self-stretch">
+        <div class="bg-bg3 rounded-md p-6">
+          <div class="flex flex-col space-y-6">
+            <span class="text-xl text-text1 text-center">
+              {" "}
+              Total Balance{" "}
+            </span>
+
+            <p
+              class="text-2xl lg:text-3xl text-white font-semibold text-center"
+            >
+              {" "}
+              $12,344.00 USD
+            </p>
+          </div>
+
+          <div
+            class="self-center w-full flex flex-row justify-center items-center mt-8"
+          >
+            <div class="flex flex-row justify-around items-center gap-8">
+              <button
+                class="px-3 py-1 text-sm rounded-md bg-[#3ebf81] text-center font-semibold text-white/80 hover:bg-[#3ebf81]/80 transition-flow"
+              >
+                {" "}
+                Withdraw{" "}
+              </button>
+
+              <button
+                class="px-3 py-1 border-[1px] border-white/40 hover:border-white/80 hover:bg-bg2 text-sm rounded-md text-center font-semibold text-white/80 transition-flow"
+              >
+                Deposit
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-span-12 lg:col-span-8 self-stretch">
+        <div class="p-6 rounded-md bg-bg2 space-y-8">
+          <div class="space-y-6">
+            <p class="text-base text-white/80">Total Withdrawal</p>
+
+            <p class="text-2xl lg:texg-3xl font-semibold text-white">
+              10,3848 USD
+            </p>
+          </div>
+
+          <div class="space-y-6">
+            <p class="text-base text-white/80">Total deposit</p>
+
+            <p class="text-2xl lg:texg-3xl font-semibold text-white">
+              8,3848 USD
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <Footer />
+  </main>
+</Layout>

@@ -12,26 +12,30 @@ const items = [
   {
     title: "Dashboard",
     icon: BsSpeedometer,
+    link: "/dashboard",
   },
 
   {
     title: "Exchanges",
     icon: MdCurrencyExchange,
+    link: "/exchanges",
   },
 
-  {
-    title: "Prices",
-    icon: MdPriceCheck,
-  },
+  // {
+  //   title: "Prices",
+  //   icon: MdPriceCheck,
+  // },
 
   {
     title: "Wallets",
     icon: AiOutlineWallet,
+    link: "/wallets",
   },
 
   {
     title: "Settings",
     icon: AiOutlineSetting,
+    link: "/settings",
   },
 ];
 
@@ -42,20 +46,21 @@ function Sidebar() {
     <>
       <aside
         className={
-          "bg-bg2 w-[80%] hidden lg:flex lg:w-[25%] px-6 pb-10 pt-32 max-w-[300px] min-h-screen  fixed left-0 top-0 bottom-0  flex-col justify-start items-center space-y-8  border-r-4 border-white "
+          "bg-bg2 w-[80%] hidden lg:flex lg:w-[25%] px-6 pb-10 pt-32 max-w-[300px] min-h-screen  fixed left-0 top-0 bottom-0  flex-col justify-start items-center space-y-12  border-r-4 border-white "
         }
       >
         {items.map((v, i) => {
           const Icon = v.icon;
 
           return (
-            <div
+            <a
+              href={v.link}
               key={i}
               className="w-full font-semibold text-left text-text1/80 hover:bg-text1/10 cursor-pointer transition-flow rounded border border-text1/20 p-4 capitalize flex flex-row justify-start space-x-4 items-center"
             >
               <Icon className="text-2xl" />
               <span> {v.title} </span>
-            </div>
+            </a>
           );
         })}
       </aside>
@@ -89,13 +94,14 @@ function Sidebar() {
                 const Icon = v.icon;
 
                 return (
-                  <div
+                  <a
+                    href={v.link}
                     key={i}
                     className="w-full font-semibold text-left text-text1/80 hover:bg-text1/10 cursor-pointer transition-flow rounded border border-text1/20 p-4 capitalize flex flex-row justify-start space-x-4 items-center"
                   >
                     <Icon className="text-2xl" />
                     <span> {v.title} </span>
-                  </div>
+                  </a>
                 );
               })}
             </aside>
