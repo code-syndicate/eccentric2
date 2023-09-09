@@ -13,7 +13,7 @@ function Profile() {
       </div>
 
       <div>
-        <p class="font-bold text-center text-xl lg:text-2xl">Jay Garrick</p>
+        <p class="font-semibold text-center text-xl lg:text-2xl">Jay Garrick</p>
         <p class="text-center text-sm text-[#3ebf81]/80 font-semibold">
           jaygarrick@gmail.com
         </p>

@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 import { checkAuth } from "../lib/checkauth";
 import BitCoinImage from "../assets/crypto/bitcoin.png";
 import SettingsAction from "../components/SettingsActions";
+import Profile from "../components/Profile";
 
 if (!Astro.cookies.has(config.authCookieKey)) {
   return Astro.redirect("/sign-in");
@@ -29,22 +30,7 @@ if (!isAuth) {
       <div
         class="hidden lg:flex col-span-6 lg:col-span-2 flex-col justify-start items-center space-y-8 bg-bg3 py-8 rounded-md lg:min-h-[500px]"
       >
-        <div
-          class="w-full self-center flex flex-col justify-center items-center"
-        >
-          <img
-            src={BitCoinImage}
-            class="w-2/5 rounded-full border border-white/20"
-            alt="bitcoin image"
-          />
-        </div>
-
-        <div>
-          <p class="font-bold text-center text-xl lg:text-2xl">Jay Garrick</p>
-          <p class="text-center text-sm text-[#3ebf81]/80 font-semibold">
-            jaygarrick@gmail.com
-          </p>
-        </div>
+        <Profile />
       </div>
 
       <SettingsAction client:load />

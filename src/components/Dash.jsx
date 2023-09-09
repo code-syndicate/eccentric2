@@ -10,7 +10,7 @@ function Dash() {
           <div className="flex flex-col space-y-2">
             <span className="text-xl  text-text1"> Main Balance </span>
 
-            <span className="text-2xl lg:text-3xl font-semibold">
+            <span className="text-2xl lg:text-2xl font-semibold">
               {" "}
               $1200.07{" "}
             </span>
@@ -21,7 +21,7 @@ function Dash() {
           <div className="flex flex-col space-y-2">
             <span className="text-xl  text-text1"> Bonus Balance </span>
 
-            <span className="text-2xl lg:text-3xl font-semibold">
+            <span className="text-2xl lg:text-2xl font-semibold">
               {" "}
               $1200.07{" "}
             </span>
@@ -35,7 +35,7 @@ function Dash() {
               Total Balance{" "}
             </span>
 
-            <p className="text-2xl lg:text-3xl text-[#3ebf81]  font-semibold text-center">
+            <p className="text-2xl lg:text-2xl text-[#3ebf81]  font-semibold text-center">
               {" "}
               $12,344.00
             </p>

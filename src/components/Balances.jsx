@@ -32,12 +32,12 @@ function Balances() {
         return (
           <div
             key={i}
-            className="bg-bg3  rounded-md p-6 pb-16 w-full flex flex-row justify-between items-center shadow-md shadow-white"
+            className="bg-bg3  rounded-md p-6 pb-16 w-full flex flex-row justify-between items-center "
           >
             <div className="flex flex-col space-y-2">
               <span className="text-xl  text-text1"> {v.title} </span>
 
-              <span className="text-2xl lg:text-3xl font-semibold">
+              <span className="text-2xl lg:text-2xl font-semibold">
                 {" "}
                 $1200.07{" "}
               </span>

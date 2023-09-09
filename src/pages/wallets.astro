@@ -32,39 +32,37 @@ if (!isAuth) {
       class="px-4 pt-8 lg:pt-8 grid grid-cols-12 gap-y-8 lg:gap-y-0 lg:gap-x-8 justify-center items-center"
     >
       <div
-        class="p-4 rounded-md col-span-12 lg:col-span-4 bg-bg1 border border-white/50 shadow-md shadow-white self-stretch"
+        class="p-4 rounded-md col-span-12 lg:col-span-4 bg-bg1 border border-white/50 shadow-md shadow-white/20 self-stretch"
       >
-        <div class="rounded-md p-6">
-          <div class="flex flex-col space-y-6">
+        <div class="">
+          <div class="flex flex-col justify-center items-start space-y-2">
             <div
-              class="text-xl text-text1 text-center flex flex-col justify-center items-center space-y-2 space-x-4"
+              class="text-xl text-text1 text-center flex flex-row justify-center items-center space-x-4"
             >
-              <span> Total Balance</span>
+              <span class="self-center"> Total Balance</span>
 
-              <MdMoney className="text-2xl" />
+              <MdMoney className="text-2xl self-center" />
             </div>
 
-            <p
-              class="text-2xl lg:text-3xl text-white font-semibold text-center"
-            >
+            <p class="text-2xl lg:text-2xl text-white font-semibold text-left">
               {" "}
               $12,344.00
             </p>
           </div>
 
           <div
-            class="self-center w-full flex flex-row justify-center items-center mt-8"
+            class="self-center w-full flex flex-row justify-start items-center mt-8"
           >
             <div class="flex flex-row justify-around items-center gap-8">
               <button
-                class="px-3 py-1 text-sm rounded-md bg-[#3ebf81] text-center font-normal text-white/80 hover:bg-[#3ebf81]/80 transition-flow"
+                class="px-4 py-2 text-sm rounded-md bg-[#3ebf81] text-center font-normal text-white/80 hover:bg-[#3ebf81]/80 transition-flow"
               >
                 {" "}
                 Withdraw{" "}
               </button>
 
               <button
-                class="px-3 py-1 border-[1px] border-white/40 hover:border-white/80 hover:bg-bg2 text-sm rounded-md text-center font-normal text-white/80 transition-flow"
+                class="px-4 py-2 border-[1px] border-white/40 hover:border-white/80 hover:bg-bg2 text-sm rounded-md text-center font-normal text-white/80 transition-flow"
               >
                 Deposit
               </button>
@@ -74,23 +72,19 @@ if (!isAuth) {
       </div>
 
       <div
-        class="col-span-12 lg:col-span-8 border border-white/50 bg-bg1 rounded-md self-stretch shadow-md shadow-white"
+        class="col-span-12 lg:col-span-8 border border-white/50 bg-bg1 rounded-md self-stretch shadow-md shadow-white/20"
       >
-        <div class="p-6 rounded-md space-y-8">
-          <div class="space-y-6">
+        <div class="p-6 rounded-md space-y-6">
+          <div class="space-y-2">
             <p class="text-base text-white/80">Total Withdrawal</p>
 
-            <p class="text-2xl lg:texg-3xl font-semibold text-white">
-              10,3848 USD
-            </p>
+            <p class="text-2xl font-semibold text-white">$10,3848</p>
           </div>
 
-          <div class="space-y-6">
+          <div class="space-y-2">
             <p class="text-base text-white/80">Total Deposit</p>
 
-            <p class="text-2xl lg:texg-3xl font-semibold text-white">
-              8,3848 USD
-            </p>
+            <p class="text-2xl font-semibold text-white">$8,3848 USD</p>
           </div>
         </div>
       </div>
