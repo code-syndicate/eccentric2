@@ -1,6 +1,6 @@
 import { BsSpeedometer, BsX } from "react-icons/bs";
 import { AiOutlineSetting, AiOutlineWallet } from "react-icons/ai";
-import { MdCurrencyExchange, MdPriceCheck } from "react-icons/md";
+import { MdCurrencyExchange, MdLogout } from "react-icons/md";
 import { useStore } from "@nanostores/react";
 import { $sidebar, setShowSidebar } from "../lib/atoms";
 import { Slide } from "react-reveal";
@@ -37,6 +37,12 @@ const items = [
     icon: AiOutlineSetting,
     link: "/settings",
   },
+
+  {
+    title: "Logout",
+    icon: MdLogout,
+    link: "/log-out",
+  },
 ];
 
 function Sidebar() {
@@ -46,7 +52,7 @@ function Sidebar() {
     <>
       <aside
         className={
-          "bg-bg2 w-[80%] hidden md:flex md:w-[20%] lg:w-[20%] px-6 pb-10 pt-32 max-w-[300px] min-h-screen  fixed left-0 top-0 bottom-0  flex-col justify-start items-center space-y-12  border-r-4 border-white "
+          "bg-bg2 w-[80%] hidden md:flex md:w-[20%] lg:w-[20%] px-6 pb-10 pt-32 max-w-[300px] min-h-screen  fixed left-0 top-0 bottom-0  flex-col justify-start items-center space-y-8  border-r-4 border-white "
         }
       >
         {items.map((v, i) => {
@@ -59,12 +65,23 @@ function Sidebar() {
               className={
                 "w-full font-semibold text-left text-text1/80 hover:bg-text1/10 cursor-pointer transition-flow rounded border border-text1/20 p-4 capitalize flex flex-row justify-start space-x-4 items-center" +
                 cn({
-                  " border border-white ": location.pathname === v.link,
+                  " border  border-white ": location.pathname === v.link,
                 })
               }
             >
-              <Icon className="text-2xl" />
-              <span> {v.title} </span>
+              <Icon
+                className={cn("text-2xl", {
+                  " text-white  ": location.pathname === v.link,
+                })}
+              />
+              <span
+                className={cn({
+                  " text-white  ": location.pathname === v.link,
+                })}
+              >
+                {" "}
+                {v.title}{" "}
+              </span>
             </a>
           );
         })}

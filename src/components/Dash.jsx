@@ -5,7 +5,7 @@ function Dash() {
     <div className=" px-4  lg:pt-12 space-y-6">
       {/* Balances Cards  */}
 
-      <div className="grid grid-cols-1 md:grid-cols-3  2xl:grid-cols-6 gap-6 lg:gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-3  lg:grid-cols-6 gap-6 lg:gap-8">
         <div className="bg-bg3 md:col-span-1 lg:col-span-2 shadow-xl rounded-md p-6 pb-16 w-full flex flex-row justify-between items-center">
           <div className="flex flex-col space-y-2">
             <span className="text-xl  text-text1"> Main Balance </span>
