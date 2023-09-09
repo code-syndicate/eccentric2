@@ -67,9 +67,9 @@ const transactions = [
 
 function TransactionTable() {
   return (
-    <div className="container mx-auto mt-4 flex flex-col justify-center items-center">
-      <table className="w-full bg-bg3 shadow-md rounded-lg table overflow-auto max-w-[99%] max-h-[600px]">
-        <caption className=" table-caption  text-xl text-left font-bold p-4">
+    <div className=" px-4 pt-8 lg:pt-8 mx-auto mt-8 flex flex-col justify-center items-center rounded overflow-auto  max-h-[500px]">
+      <table className="w-full bg-bg3 shadow-md rounded table">
+        <caption className="text-white/80 table-caption  text-xl lg:text-2xl text-left font-semibold p-4">
           Transaction History
         </caption>
         <thead>

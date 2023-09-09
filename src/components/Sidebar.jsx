@@ -46,7 +46,7 @@ function Sidebar() {
     <>
       <aside
         className={
-          "bg-bg2 w-[80%] hidden lg:flex lg:w-[25%] px-6 pb-10 pt-32 max-w-[300px] min-h-screen  fixed left-0 top-0 bottom-0  flex-col justify-start items-center space-y-12  border-r-4 border-white "
+          "bg-bg2 w-[80%] hidden md:flex md:w-[20%] lg:w-[20%] px-6 pb-10 pt-32 max-w-[300px] min-h-screen  fixed left-0 top-0 bottom-0  flex-col justify-start items-center space-y-12  border-r-4 border-white "
         }
       >
         {items.map((v, i) => {
