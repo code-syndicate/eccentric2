@@ -5,6 +5,7 @@ import { checkAuth } from "../lib/checkauth";
 import Footer from "../components/Footer";
 import Prices from "../components/Prices";
 import TransactionTable from "../components/TransactionHistory";
+import { MdMoney } from "react-icons/md";
 
 export const prerender = false;
 
@@ -28,23 +29,26 @@ if (!isAuth) {
     <Prices />
 
     <div
-      class="px-4 pt-8 lg:pt-8 grid grid-cols-12 gap-8 justify-center items-center"
+      class="px-4 pt-8 lg:pt-8 grid grid-cols-12 gap-y-8 lg:gap-y-0 lg:gap-x-8 justify-center items-center"
     >
       <div
-        class="p-4 rounded-md col-span-12 lg:col-span-4 bg-bg2 self-stretch m-4 lg:m-0"
+        class="p-4 rounded-md col-span-12 lg:col-span-4 bg-bg1 border border-white/50 shadow-md shadow-white self-stretch"
       >
-        <div class="bg-bg3 rounded-md p-6">
+        <div class="rounded-md p-6">
           <div class="flex flex-col space-y-6">
-            <span class="text-xl text-text1 text-center">
-              {" "}
-              Total Balance{" "}
-            </span>
+            <div
+              class="text-xl text-text1 text-center flex flex-col justify-center items-center space-y-2 space-x-4"
+            >
+              <span> Total Balance</span>
+
+              <MdMoney className="text-2xl" />
+            </div>
 
             <p
               class="text-2xl lg:text-3xl text-white font-semibold text-center"
             >
               {" "}
-              $12,344.00 USD
+              $12,344.00
             </p>
           </div>
 
@@ -53,14 +57,14 @@ if (!isAuth) {
           >
             <div class="flex flex-row justify-around items-center gap-8">
               <button
-                class="px-3 py-1 text-sm rounded-md bg-[#3ebf81] text-center font-semibold text-white/80 hover:bg-[#3ebf81]/80 transition-flow"
+                class="px-3 py-1 text-sm rounded-md bg-[#3ebf81] text-center font-normal text-white/80 hover:bg-[#3ebf81]/80 transition-flow"
               >
                 {" "}
                 Withdraw{" "}
               </button>
 
               <button
-                class="px-3 py-1 border-[1px] border-white/40 hover:border-white/80 hover:bg-bg2 text-sm rounded-md text-center font-semibold text-white/80 transition-flow"
+                class="px-3 py-1 border-[1px] border-white/40 hover:border-white/80 hover:bg-bg2 text-sm rounded-md text-center font-normal text-white/80 transition-flow"
               >
                 Deposit
               </button>
@@ -69,8 +73,10 @@ if (!isAuth) {
         </div>
       </div>
 
-      <div class="col-span-12 lg:col-span-8 self-stretch m-4 lg:m-0">
-        <div class="p-6 rounded-md bg-bg2 space-y-8">
+      <div
+        class="col-span-12 lg:col-span-8 border border-white/50 bg-bg1 rounded-md self-stretch shadow-md shadow-white"
+      >
+        <div class="p-6 rounded-md space-y-8">
           <div class="space-y-6">
             <p class="text-base text-white/80">Total Withdrawal</p>
 
@@ -80,7 +86,7 @@ if (!isAuth) {
           </div>
 
           <div class="space-y-6">
-            <p class="text-base text-white/80">Total deposit</p>
+            <p class="text-base text-white/80">Total Deposit</p>
 
             <p class="text-2xl lg:texg-3xl font-semibold text-white">
               8,3848 USD

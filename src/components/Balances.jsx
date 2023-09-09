@@ -32,7 +32,7 @@ function Balances() {
         return (
           <div
             key={i}
-            className="bg-bg3 shadow-xl rounded-md p-6 pb-16 w-full flex flex-row justify-between items-center"
+            className="bg-bg3  rounded-md p-6 pb-16 w-full flex flex-row justify-between items-center shadow-md shadow-white"
           >
             <div className="flex flex-col space-y-2">
               <span className="text-xl  text-text1"> {v.title} </span>

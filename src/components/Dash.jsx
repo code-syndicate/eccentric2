@@ -29,20 +29,20 @@ function Dash() {
         </div>
 
         <div className="md:col-span-1 lg:col-span-2 bg-bg3  rounded-md p-6">
-          <div className="flex flex-col space-y-2">
+          <div className="flex flex-col justify-center items-start space-y-2">
             <span className="text-xl  text-text1 text-center">
               {" "}
               Total Balance{" "}
             </span>
 
-            <p className="text-sm lg:text-base text-[#3ebf81]  font-semibold text-center">
+            <p className="text-2xl lg:text-3xl text-[#3ebf81]  font-semibold text-center">
               {" "}
-              $12,344.00 USD
+              $12,344.00
             </p>
           </div>
 
-          <div className="self-center w-full flex flex-row justify-center items-center mt-4">
-            <button className=" px-3 py-1 text-sm rounded-md bg-[#3ebf81]  text-center font-semibold text-white/80  hover:bg-[#3ebf81]/80 transition-flow">
+          <div className="self-center w-full flex flex-row justify-start items-center mt-4">
+            <button className=" px-3 py-1 text-sm rounded-md bg-[#3ebf81]  text-center font-normal text-white/80  hover:bg-[#3ebf81]/80 transition-flow">
               {" "}
               Withdraw{" "}
             </button>
