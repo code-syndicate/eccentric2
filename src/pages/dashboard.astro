@@ -26,9 +26,19 @@ if (!isAuth) {
   <main class="lg:ml-[20%] pt-20 lg:w-[80%]">
     <Dash />
 
+    <script
+      src="https://widgets.coingecko.com/coingecko-coin-price-marquee-widget.js"
+    ></script>
+    <coingecko-coin-price-marquee-widget
+      coin-ids="bitcoin,ethereum,eos,ripple,litecoin"
+      currency="usd"
+      background-color="#000000"
+      locale="en"
+      font-color="#ffffff"></coingecko-coin-price-marquee-widget>
+
     <!-- Trading View Wrapper  -->
 
-    <div class="px-4 pt-4">
+    <div class="p-4 bg-bg3">
       <div class="tradingview-widget-container">
         <div class="" id="tradingview_dd969"></div>
         <div class="tradingview-widget-copyright">
@@ -47,6 +57,7 @@ if (!isAuth) {
             interval: "D",
             timezone: "Etc/UTC",
             width: "100%",
+            height: "500px",
             theme: "dark",
             style: "3",
             locale: "en",

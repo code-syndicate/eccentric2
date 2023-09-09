@@ -4,6 +4,7 @@ import Layout from "../layouts/Layout.astro";
 import { checkAuth } from "../lib/checkauth";
 import Footer from "../components/Footer";
 import Prices from "../components/Prices";
+import TransactionTable from "../components/TransactionHistory";
 
 export const prerender = false;
 
@@ -86,6 +87,8 @@ if (!isAuth) {
         </div>
       </div>
     </div>
+
+    <TransactionTable />
 
     <Footer />
   </main>
