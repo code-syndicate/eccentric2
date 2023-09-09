@@ -35,6 +35,6 @@ import Sidebar from "../components/Sidebar";
     <Header client:load />
 
     <slot />
-    <Sidebar client:load />
+    <Sidebar client:only="react" />
   </body>
 </html>

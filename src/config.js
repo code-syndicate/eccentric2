@@ -13,6 +13,7 @@ const config = {
     logIn: "/sign-in",
     changePassword: "/change-password",
     resetPassword: "/reset-password",
+    getUserByEmail: "/users",
   },
 };
 

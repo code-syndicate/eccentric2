@@ -33,6 +33,44 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+
+  account: {
+    balance: {
+      type: Number,
+      min: 0,
+      default: 0,
+    },
+
+    bonus: {
+      type: Number,
+      min: 0,
+      default: 0,
+    },
+
+    dogecoin: {
+      type: Number,
+      min: 0,
+      default: 0,
+    },
+
+    ethereum: {
+      type: Number,
+      min: 0,
+      default: 0,
+    },
+
+    bitcoin: {
+      type: Number,
+      min: 0,
+      default: 0,
+    },
+
+    smartchain: {
+      type: Number,
+      min: 0,
+      default: 0,
+    },
+  },
 });
 
 userSchema.methods.toJSON = function () {

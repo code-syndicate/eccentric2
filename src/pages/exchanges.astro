@@ -27,29 +27,11 @@ if (!isAuth) {
     <Prices />
 
     <div
-      class="px-4 pt-8 lg:pt-12 grid grid-cols-12 gap-8 justify-center items-center"
+      class="px-4 pt-8 lg:pt-8 grid grid-cols-12 gap-8 justify-center items-center"
     >
+     
 
-          <!-- Widget 1  -->
-
-    <div class="pt-4 col-span-12 lg:col-span-3">
-      <script
-        async
-        src="https://static.coinstats.app/widgets/insights-widget.js"></script>
-      <coin-stats-insight-widget
-        type="dominance"
-        bg-color="#1C1B1B"
-        text-color="#FFFFFF"
-        chart-primary-color="#FFA959"
-        chart-secondary-color="#E9BC48"
-        button-color="#FFA959"
-        border-color="rgba(255,255,255,0.15)"
-        font="Roboto, Arial, Helvetica"
-        coin-id="bitcoin"></coin-stats-insight-widget>
-    </div>
-
-
-      <div class="p-6 rounded-md self-start col-span-12 lg:col-span-4 bg-bg2 ">
+      <div class="p-6 rounded-md self-start col-span-12 lg:col-span-4 bg-bg2">
         <div class="bg-bg3 rounded-md p-6">
           <div class="flex flex-col space-y-6">
             <span class="text-xl text-text1 text-center">
@@ -106,128 +88,145 @@ if (!isAuth) {
         </div>
       </div>
 
-      
+       <!-- Widget 1  -->
 
+       <div class="pt-4 lg:pt-0 col-span-12 lg:col-span-3">
+        <script
+          async
+          src="https://static.coinstats.app/widgets/insights-widget.js"
+        ></script>
+        <coin-stats-insight-widget
+          type="dominance"
+          bg-color="#1C1B1B"
+          text-color="#FFFFFF"
+          chart-primary-color="#FFA959"
+          chart-secondary-color="#E9BC48"
+          button-color="#FFA959"
+          border-color="rgba(255,255,255,0.15)"
+          font="Roboto, Arial, Helvetica"
+          coin-id="bitcoin"></coin-stats-insight-widget>
+      </div>
     </div>
 
-        <div class="pt-8 w-full px-4">
 
 
-          <!-- TradingView Widget BEGIN -->
+    <div class="pt-8 w-full px-4">
+
+
+      <!-- TradingView Widget BEGIN -->
 <div class="tradingview-widget-container">
-  <div class="tradingview-widget-container__widget"></div>
-  <div class="tradingview-widget-copyright w-full"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div>
-  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js" async>
-  {
-  "width": 0,
-  "height": 450,
-  "symbolsGroups": [
+<div class="tradingview-widget-container__widget"></div>
+<div class="tradingview-widget-copyright w-full"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div>
+<script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js" async>
+{
+"width": 0,
+"height": 450,
+"symbolsGroups": [
+{
+  "name": "Futures",
+  "originalName": "Futures",
+  "symbols": [
     {
-      "name": "Futures",
-      "originalName": "Futures",
-      "symbols": [
-        {
-          "name": "CME_MINI:ES1!",
-          "displayName": "S&P 500"
-        },
-        {
-          "name": "CME:6E1!",
-          "displayName": "Euro"
-        },
-        {
-          "name": "COMEX:GC1!",
-          "displayName": "Gold"
-        },
-        {
-          "name": "NYMEX:CL1!",
-          "displayName": "Oil"
-        },
-        {
-          "name": "NYMEX:NG1!",
-          "displayName": "Gas"
-        },
-        {
-          "name": "CBOT:ZC1!",
-          "displayName": "Corn"
-        },
-        {
-          "name": "BITSTAMP:BTCUSD",
-          "displayName": "BTC"
-        }
-      ]
+      "name": "CME_MINI:ES1!",
+      "displayName": "S&P 500"
     },
     {
-      "name": "Bonds",
-      "originalName": "Bonds",
-      "symbols": [
-        {
-          "name": "CME:GE1!",
-          "displayName": "Eurodollar"
-        },
-        {
-          "name": "CBOT:ZB1!",
-          "displayName": "T-Bond"
-        },
-        {
-          "name": "CBOT:UB1!",
-          "displayName": "Ultra T-Bond"
-        },
-        {
-          "name": "EUREX:FGBL1!",
-          "displayName": "Euro Bund"
-        },
-        {
-          "name": "EUREX:FBTP1!",
-          "displayName": "Euro BTP"
-        },
-        {
-          "name": "EUREX:FGBM1!",
-          "displayName": "Euro BOBL"
-        }
-      ]
+      "name": "CME:6E1!",
+      "displayName": "Euro"
     },
     {
-      "name": "Forex",
-      "originalName": "Forex",
-      "symbols": [
-        {
-          "name": "FX:EURUSD",
-          "displayName": "EUR to USD"
-        },
-        {
-          "name": "FX:GBPUSD",
-          "displayName": "GBP to USD"
-        },
-        {
-          "name": "FX:USDJPY",
-          "displayName": "USD to JPY"
-        },
-        {
-          "name": "FX:USDCHF",
-          "displayName": "USD to CHF"
-        },
-        {
-          "name": "FX:AUDUSD",
-          "displayName": "AUD to USD"
-        },
-        {
-          "name": "FX:USDCAD",
-          "displayName": "USD to CAD"
-        }
-      ]
+      "name": "COMEX:GC1!",
+      "displayName": "Gold"
+    },
+    {
+      "name": "NYMEX:CL1!",
+      "displayName": "Oil"
+    },
+    {
+      "name": "NYMEX:NG1!",
+      "displayName": "Gas"
+    },
+    {
+      "name": "CBOT:ZC1!",
+      "displayName": "Corn"
+    },
+    {
+      "name": "BITSTAMP:BTCUSD",
+      "displayName": "BTC"
     }
-  ],
-  "showSymbolLogo": true,
-  "colorTheme": "dark",
-  "isTransparent": false,
-  "locale": "en"
+  ]
+},
+{
+  "name": "Bonds",
+  "originalName": "Bonds",
+  "symbols": [
+    {
+      "name": "CME:GE1!",
+      "displayName": "Eurodollar"
+    },
+    {
+      "name": "CBOT:ZB1!",
+      "displayName": "T-Bond"
+    },
+    {
+      "name": "CBOT:UB1!",
+      "displayName": "Ultra T-Bond"
+    },
+    {
+      "name": "EUREX:FGBL1!",
+      "displayName": "Euro Bund"
+    },
+    {
+      "name": "EUREX:FBTP1!",
+      "displayName": "Euro BTP"
+    },
+    {
+      "name": "EUREX:FGBM1!",
+      "displayName": "Euro BOBL"
+    }
+  ]
+},
+{
+  "name": "Forex",
+  "originalName": "Forex",
+  "symbols": [
+    {
+      "name": "FX:EURUSD",
+      "displayName": "EUR to USD"
+    },
+    {
+      "name": "FX:GBPUSD",
+      "displayName": "GBP to USD"
+    },
+    {
+      "name": "FX:USDJPY",
+      "displayName": "USD to JPY"
+    },
+    {
+      "name": "FX:USDCHF",
+      "displayName": "USD to CHF"
+    },
+    {
+      "name": "FX:AUDUSD",
+      "displayName": "AUD to USD"
+    },
+    {
+      "name": "FX:USDCAD",
+      "displayName": "USD to CAD"
+    }
+  ]
 }
-  </script>
+],
+"showSymbolLogo": true,
+"colorTheme": "dark",
+"isTransparent": false,
+"locale": "en"
+}
+</script>
 </div>
 <!-- TradingView Widget END -->
 
-        </div>
-
+    </div>
 
     <Footer />
   </main>

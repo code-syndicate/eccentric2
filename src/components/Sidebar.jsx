@@ -56,7 +56,12 @@ function Sidebar() {
             <a
               href={v.link}
               key={i}
-              className="w-full font-semibold text-left text-text1/80 hover:bg-text1/10 cursor-pointer transition-flow rounded border border-text1/20 p-4 capitalize flex flex-row justify-start space-x-4 items-center"
+              className={
+                "w-full font-semibold text-left text-text1/80 hover:bg-text1/10 cursor-pointer transition-flow rounded border border-text1/20 p-4 capitalize flex flex-row justify-start space-x-4 items-center" +
+                cn({
+                  " border border-white ": location.pathname === v.link,
+                })
+              }
             >
               <Icon className="text-2xl" />
               <span> {v.title} </span>
@@ -97,7 +102,12 @@ function Sidebar() {
                   <a
                     href={v.link}
                     key={i}
-                    className="w-full font-semibold text-left text-text1/80 hover:bg-text1/10 cursor-pointer transition-flow rounded border border-text1/20 p-4 capitalize flex flex-row justify-start space-x-4 items-center"
+                    className={
+                      "w-full font-semibold text-left text-text1/80 hover:bg-text1/10 cursor-pointer transition-flow rounded border border-text1/20 p-4 capitalize flex flex-row justify-start space-x-4 items-center" +
+                      cn({
+                        " border border-white ": location.pathname === v.link,
+                      })
+                    }
                   >
                     <Icon className="text-2xl" />
                     <span> {v.title} </span>

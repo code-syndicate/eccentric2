@@ -28,7 +28,7 @@ if (!isAuth) {
 
     <!-- Trading View Wrapper  -->
 
-    <div class="px-4 pt-8">
+    <div class="px-4 pt-4">
       <div class="tradingview-widget-container">
         <div class="" id="tradingview_dd969"></div>
         <div class="tradingview-widget-copyright">
@@ -42,10 +42,11 @@ if (!isAuth) {
         ></script>
         <script type="text/javascript">
           new TradingView.widget({
-            autosize: true,
+            autosize: false,
             symbol: "BITSTAMP:BTCUSD",
             interval: "D",
             timezone: "Etc/UTC",
+            width: "100%",
             theme: "dark",
             style: "3",
             locale: "en",

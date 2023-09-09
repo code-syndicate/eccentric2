@@ -1,11 +1,23 @@
-import { User } from "../lib/models/user";
+import { fetchUtil, makeUrl } from "./utils";
+import config from "../config";
 
 export async function checkAuth(authObj) {
-  const authUser = await User.findOne({ email: authObj.email }).exec();
+  console.log("Auth checking started!");
+  const res = await fetchUtil({
+    url: makeUrl(config.apiEndpoints.getUserByEmail),
+    method: "GET",
+    surfix: `/${authObj.email}`,
+  });
 
-  if (!authUser) {
+  // console.log(res);
+
+  if (!res.success) {
     return false;
   }
 
-  return true;
+  if (res.data && res.data.email) {
+    return true;
+  }
+
+  return false;
 }

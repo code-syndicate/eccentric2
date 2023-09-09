@@ -1,6 +1,6 @@
-import { User } from "../../lib/models/user";
-import { hashPassword } from "../../lib/hashing";
-import dbConnect from "../../lib/dbConnect";
+import { User } from "../../../lib/models/user";
+import { hashPassword } from "../../../lib/hashing";
+import dbConnect from "../../../lib/dbConnect";
 
 export const prerender = false;
 
