@@ -67,11 +67,8 @@ const transactions = [
 
 function TransactionTable() {
   return (
-    <div className=" px-4 pt-8 lg:pt-8 mx-auto mt-8 flex flex-col justify-center items-center rounded overflow-auto  max-h-[500px]">
-      <table className="w-full bg-bg3 shadow-md rounded table">
-        <caption className="text-white/80 table-caption  text-xl lg:text-2xl text-left font-semibold p-4">
-          Transaction History
-        </caption>
+    <div className="w-full  pt-8 lg:pt-8  mt-8 flex flex-col justify-center items-start rounded overflow-auto  max-h-[500px]">
+      <table className="w-full bg-bg3  shadow-md rounded table">
         <thead>
           <tr>
             <th className="py-6 px-4">S/N</th>

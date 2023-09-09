@@ -30,7 +30,9 @@ if (!isAuth) {
     <div
       class="px-4 pt-8 lg:pt-8 grid grid-cols-12 gap-8 justify-center items-center"
     >
-      <div class="p-4 rounded-md col-span-12 lg:col-span-4 bg-bg2 self-stretch">
+      <div
+        class="p-4 rounded-md col-span-12 lg:col-span-4 bg-bg2 self-stretch m-4 lg:m-0"
+      >
         <div class="bg-bg3 rounded-md p-6">
           <div class="flex flex-col space-y-6">
             <span class="text-xl text-text1 text-center">
@@ -67,7 +69,7 @@ if (!isAuth) {
         </div>
       </div>
 
-      <div class="col-span-12 lg:col-span-8 self-stretch">
+      <div class="col-span-12 lg:col-span-8 self-stretch m-4 lg:m-0">
         <div class="p-6 rounded-md bg-bg2 space-y-8">
           <div class="space-y-6">
             <p class="text-base text-white/80">Total Withdrawal</p>
@@ -87,7 +89,15 @@ if (!isAuth) {
         </div>
       </div>
     </div>
-    <TransactionTable />
+
+    <div class="px-4 pt-8 lg:pt-8">
+      <h4
+        class="text-white/80 whitespace-nowrap table-caption text-xl lg:text-2xl text-left font-semibold pt-4 px-4"
+      >
+        Transaction History
+      </h4>
+      <TransactionTable />
+    </div>
 
     <Footer />
   </main>
