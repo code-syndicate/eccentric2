@@ -1,6 +1,8 @@
 import cn from "classnames";
 import ProfileForm from "./ProfileForm";
 import { useState } from "react";
+import { FcEmptyTrash } from "react-icons/fc";
+import Profile from "./Profile";
 
 function SettingsActions() {
   const [active, setActive] = useState(0);
@@ -62,7 +64,32 @@ function SettingsActions() {
           " hidden ": active !== 0,
         })}
       >
+        <Profile />
+      </div>
+
+      <div
+        className={cn({
+          " block ": active === 1,
+          " hidden ": active !== 1,
+        })}
+      >
         <ProfileForm />
+      </div>
+
+      <div
+        className={cn({
+          " block ": active === 2,
+          " hidden ": active !== 2,
+        })}
+      >
+        <div className="flex flex-col justify-center items-center py-6">
+          <p className="text-center text-white/80 text-lg py-6">
+            {" "}
+            No notifications
+            <br />
+          </p>
+          <FcEmptyTrash className="text-4xl" />
+        </div>
       </div>
     </div>
   );
