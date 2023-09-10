@@ -41,7 +41,7 @@ function Header({ user }) {
           </div>
 
           <a
-            href="/settings"
+            href="/settings?v=2"
             className="bg-bg1 border border-white/0 hover:border-white/60 cursor-pointer transition-flow relative rounded-xl p-3"
           >
             <BsBell className="text-text1/80 text-xl " />
@@ -58,7 +58,7 @@ function Header({ user }) {
         </div>
 
         <a
-          href="/settings"
+          href="/settings?v=1"
           className="flex flex-row justify-between items-center space-x-6"
         >
           <img

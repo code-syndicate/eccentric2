@@ -3,9 +3,30 @@ import ProfileForm from "./ProfileForm";
 import { useState } from "react";
 import Profile from "./Profile";
 import NotificationPanel from "./NotificationPanel";
+import { startTransition } from "react";
+import { useEffect } from "react";
 
 function SettingsActions({ user }) {
   const [active, setActive] = useState(1);
+
+  useEffect(() => {
+    const url = new URL(location.href, location.origin);
+
+    if (url.searchParams.has("v")) {
+      const l = ["0", "1", "2"];
+      const v = url.searchParams.get("v");
+
+      if (!l.includes(v)) {
+        return;
+      }
+
+      if (active !== +v) {
+        startTransition(() => {
+          setActive(+v);
+        });
+      }
+    }
+  }, []);
 
   function selectActive(n) {
     return () => {

@@ -96,7 +96,7 @@ function NotificationPanel({ user }) {
       )}
 
       {user.notifications.length > 0 && (
-        <div className="min-h-full overflow-x-auto">
+        <div className="min-h-full overflow-y-auto max-h-[90vh]">
           {user.notifications
             .sort((b, a) => +a.date - +b.date)
             .map((c, i) => (
