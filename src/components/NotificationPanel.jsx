@@ -2,7 +2,6 @@ import { FcEmptyTrash } from "react-icons/fc";
 import { useState } from "react";
 import { makeUrl, fetchUtil } from "../lib/utils";
 import config from "../config";
-import Spinner from "./Spinner";
 import { setNotifyMessage } from "../lib/atoms";
 import cn from "classnames";
 
@@ -86,7 +85,7 @@ function NotificationPanel({ user }) {
   return (
     <div>
       {user.notifications.length < 1 && (
-        <div className="flex flex-col justify-center items-center py-6">
+        <div className="flex flex-col justify-center items-center py-10">
           <p className="text-center text-white/80 text-lg py-6">
             {" "}
             No notifications

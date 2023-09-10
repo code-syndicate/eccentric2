@@ -1,4 +1,5 @@
 import BitcoinImage from "../assets/crypto/bitcoin.png";
+import { FcEmptyTrash } from "react-icons/fc";
 
 // Sample transaction data
 const transactions = [
@@ -68,7 +69,16 @@ const transactions = [
 function TransactionTable() {
   return (
     <div className="w-full  pt-8 lg:pt-8  mt-8 flex flex-col justify-center items-start rounded overflow-auto  max-h-[500px]">
-      <table className="w-full bg-bg3  shadow-md rounded table">
+      <div className="flex flex-col justify-center items-center py-16 w-full bg-bg3">
+        <p className="text-center text-white/80 text-lg py-6">
+          {" "}
+          No history yet
+          <br />
+        </p>
+        <FcEmptyTrash className="text-4xl" />
+      </div>
+
+      <table className="w-full hidden bg-bg3  shadow-md rounded table">
         <thead>
           <tr>
             <th className="py-6 px-4">S/N</th>
