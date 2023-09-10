@@ -2,7 +2,7 @@ import { fetchUtil, makeUrl } from "./utils";
 import config from "../config";
 
 export async function checkAuth(authObj) {
-  console.log("Auth checking started!");
+  // console.log("Auth checking started!");
   const res = await fetchUtil({
     url: makeUrl(config.apiEndpoints.getUserByEmail),
     method: "GET",

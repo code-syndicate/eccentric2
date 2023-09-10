@@ -5,6 +5,7 @@ import "../styles/index.css";
 import Header from "../components/Header.jsx";
 import Sidebar from "../components/Sidebar";
 import { checkAuth } from "../lib/checkauth";
+import Notify from "../components/Notify";
 
 if (!Astro.cookies.has(config.authCookieKey)) {
   return Astro.redirect("/sign-in");
@@ -50,6 +51,8 @@ const user = isAuth.user;
   </head>
   <body class="bg-bg1 text-text1 bg-[url('/bg.svg')]">
     <Header user={user} client:load />
+
+    <Notify client:load />
 
     <slot />
     <Sidebar client:only="react" />

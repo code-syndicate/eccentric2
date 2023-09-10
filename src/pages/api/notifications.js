@@ -1,6 +1,5 @@
-import { User } from "../../../lib/models/user";
-import { hashPassword } from "../../../lib/hashing";
-import dbConnect from "../../../lib/dbConnect";
+import { User } from "../../lib/models/user";
+import dbConnect from "../../lib/dbConnect";
 
 export const prerender = false;
 
@@ -8,41 +7,28 @@ export async function post({ request }) {
   if (request.headers.get("Content-Type") === "application/json") {
     const body = JSON.parse(await request.json());
 
-    if (body.password1 !== body.password2) {
-      return new Response(
-        JSON.stringify({ message: "Passwords do not match!" }),
-        {
-          headers: { "Content-Type": "application/json" },
-          status: 400,
-        }
-      );
-    }
-
     await dbConnect();
 
-    const existingUser = await User.findOne({ email: body.email })
-      .lean()
-      .exec();
+    const existingUser = await User.findOne({ email: body.email }).exec();
 
     // console.log(" Existing user: ", existingUser);
 
-    if (existingUser) {
-      return new Response(JSON.stringify({ message: "User already exists" }), {
+    if (!existingUser) {
+      return new Response(JSON.stringify({ message: "User not found" }), {
         headers: { "Content-Type": "application/json" },
         status: 400,
       });
     }
 
-    const newUser = await User.create({
-      firstName: body.firstName,
-      lastName: body.lastName,
-      email: body.email,
-      password: hashPassword(body.password2),
-    });
+    existingUser.notifications = existingUser.notifications.filter(
+      (notification) => "" + notification._id !== body.id
+    );
+
+    await existingUser.save();
 
     // console.log(newUser);
 
-    return new Response(JSON.stringify(newUser), {
+    return new Response(JSON.stringify(existingUser), {
       headers: { "Content-Type": "application/json" },
       status: 200,
     });
@@ -60,6 +46,8 @@ export async function put({ request }) {
   if (request.headers.get("Content-Type") === "application/json") {
     const body = JSON.parse(await request.json());
 
+    // console.log("body: ", body);
+
     await dbConnect();
 
     const existingUser = await User.findOne({ email: body.email }).exec();
@@ -69,34 +57,36 @@ export async function put({ request }) {
     if (!existingUser) {
       return new Response(JSON.stringify({ message: "User not found" }), {
         headers: { "Content-Type": "application/json" },
-        status: 404,
+        status: 400,
       });
     }
 
-    if (body.firstName) {
-      existingUser.firstName = body.firstName;
+    const thatN = existingUser.notifications.find(
+      (notification) => "" + notification._id === body.id
+    );
+
+    // console.log("thatN: ", thatN);
+
+    if (!thatN) {
+      return new Response(
+        JSON.stringify({ message: "Notification not found" }),
+        {
+          headers: { "Content-Type": "application/json" },
+          status: 400,
+        }
+      );
     }
 
-    if (body.lastName) {
-      existingUser.lastName = body.lastName;
-    }
+    thatN.isRead = true;
 
-    if (body.country) {
-      existingUser.country = body.country;
-    }
-
-    if (body.city) {
-      existingUser.city = body.city;
-    }
-
-    if (body.zipcode) {
-      existingUser.zipcode = body.zipcode;
-    }
-
-    existingUser.notifications.push({
-      message: "Your profile was updated",
-      date: Date.now(),
+    const otherN = existingUser.notifications.filter((notification) => {
+      //   console.log("notification.id: ", notification._id, "body.id: ", body.id);
+      return "" + notification._id !== body.id;
     });
+
+    // console.log("thatN: ", thatN, "otherN: ", otherN);
+
+    existingUser.notifications = [...otherN, thatN];
 
     await existingUser.save();
 

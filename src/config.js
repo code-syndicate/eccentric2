@@ -14,6 +14,7 @@ const config = {
     changePassword: "/change-password",
     resetPassword: "/reset-password",
     getUserByEmail: "/users",
+    notifications: "/notifications",
   },
 };
 

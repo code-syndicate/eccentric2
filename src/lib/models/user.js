@@ -50,6 +50,7 @@ const userSchema = new mongoose.Schema({
         message: String,
         date: Date,
         isRead: Boolean,
+        id: mongoose.Schema.Types.ObjectId,
       },
     ],
 

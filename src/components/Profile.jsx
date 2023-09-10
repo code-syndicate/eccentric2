@@ -1,7 +1,6 @@
 import BitCoinImage from "../assets/crypto/bitcoin.png";
 
 function Profile({ user }) {
-  console.log("User is: ", user);
   return (
     <div className="col-span-6 lg:col-span-2 flex flex-col justify-start items-center space-y-8 bg-bg3 py-8 rounded-md lg:min-h-[500px]">
       <div className="w-full self-center flex flex-col justify-center items-center">
@@ -21,7 +20,7 @@ function Profile({ user }) {
         </p>
 
         <p className="text-center text-sm text-white font-normal">
-          Joined: {new Date(user?.dateJoined || Date()).toDateString()}
+          Joined: {new Date(user?.dateJoined || Date()).toLocaleString()}
         </p>
       </div>
 

@@ -1,5 +1,4 @@
 import { Form, Formik, Field, ErrorMessage } from "formik";
-import LogoImage from "../assets/logo.png";
 import * as Yup from "yup";
 import { useState } from "react";
 import { makeUrl, fetchUtil } from "../lib/utils";
@@ -36,18 +35,17 @@ const schema = Yup.object().shape({
   email: Yup.string()
     .email(" Invalid email address ")
     .required("Email is required"),
-  password: Yup.string()
-    .min(8, " Must be 8 characters or more")
-    .required("Password is required"),
 });
 
-function ProfileForm() {
+function ProfileForm({ user }) {
   const [loading, setLoading] = useState(false);
 
-  async function loginUser(values) {
+  // console.log("Auth user: ", user);
+
+  async function updateUser(values) {
     const res = await fetchUtil({
-      url: makeUrl(config.apiEndpoints.logIn),
-      method: "POST",
+      url: makeUrl(config.apiEndpoints.createUser),
+      method: "PUT",
       body: JSON.stringify(values),
     });
 
@@ -55,13 +53,13 @@ function ProfileForm() {
       setNotifyMessage({
         show: true,
         title: "Success",
-        content: "Log in successful.",
+        content: "Details updated successful.",
         allowclose: false,
         onAccept: () => {
-          window.location.href = "/dashboard";
+          window.location.href = "/settings";
           // redirect('/sign-in')
         },
-        onAcceptText: "Proceed to dashboard",
+        onAcceptText: "Refresh",
       });
     } else {
       setNotifyMessage({
@@ -76,7 +74,7 @@ function ProfileForm() {
   async function handleSubmit(values) {
     setLoading(true);
 
-    await loginUser(values);
+    await updateUser(values);
 
     setLoading(false);
   }
@@ -86,12 +84,17 @@ function ProfileForm() {
       <Formik
         validationSchema={schema}
         initialValues={{
-          email: "",
-          password: "",
+          email: user?.email,
+          zipcode: "",
+          firstName: "",
+          lastName: "",
+          country: "",
+          city: "",
         }}
         onSubmit={handleSubmit}
       >
-        {({ errors, isValid }) => {
+        {({ isValid }) => {
+          // console.log(errors);
           return (
             <Form className="grid grid-cols-2 gap-x-8 gap-y-4 w-full justify-center items-center  py-6 ">
               <div className="w-full">
@@ -131,7 +134,9 @@ function ProfileForm() {
                   Email Address
                 </label>
                 <Field
+                  readOnly
                   type="email"
+                  disabled
                   name="email"
                   className=" field pr-4 w-full "
                   placeholder="Email Address"
