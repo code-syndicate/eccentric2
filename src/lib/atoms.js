@@ -14,6 +14,10 @@ export const $walletQr = atom({
   address: null,
 });
 
+export const $withdrawPopup = atom({
+  show: false,
+});
+
 export const $sidebar = atom({
   show: false,
 });
@@ -39,6 +43,13 @@ export const setNotifyMessage = (obj) => {
 export const setWalletQr = (obj) => {
   $walletQr.set({
     ...$walletQr.get(),
+    ...obj,
+  });
+};
+
+export const setWithdrawPopup = (obj) => {
+  $withdrawPopup.set({
+    ...$withdrawPopup.get(),
     ...obj,
   });
 };

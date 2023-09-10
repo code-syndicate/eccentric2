@@ -7,6 +7,7 @@ import Sidebar from "../components/Sidebar";
 import { checkAuth } from "../lib/checkauth";
 import Notify from "../components/Notify";
 import WalletDetails from "../components/WalletDetails";
+import WithdrawalPopup from "../components/WithdrawPopup";
 
 if (!Astro.cookies.has(config.authCookieKey)) {
   return Astro.redirect("/sign-in");
@@ -55,6 +56,7 @@ const user = isAuth.user;
 
     <Notify client:load />
     <WalletDetails client:load />
+    <WithdrawalPopup user={user} client:load />
 
     <slot />
     <Sidebar client:only="react" />

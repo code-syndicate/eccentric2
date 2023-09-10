@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import Prices from "../components/Prices";
 import TransactionTable from "../components/TransactionHistory";
 import { MdMoney } from "react-icons/md";
+import WCard from "../components/WCard";
 
 export const prerender = false;
 
@@ -55,21 +56,7 @@ const account = isAuth.user.account;
           <div
             class="self-center w-full flex flex-row justify-start items-center mt-8"
           >
-            <div class="flex flex-row justify-around items-center gap-8">
-              <button
-                disabled={account.bonus + account.balance < 100}
-                class="px-4 disabled:opacity-40 disabled:pointer-events-none py-2 text-sm rounded-md bg-[#3ebf81] text-center font-normal text-white/80 hover:bg-[#3ebf81]/80 transition-flow"
-              >
-                {" "}
-                Withdraw{" "}
-              </button>
-
-              <!-- <button
-                class="px-4 py-2 border-[1px] border-white/40 hover:border-white/80 hover:bg-bg2 text-sm rounded-md text-center font-normal text-white/80 transition-flow"
-              >
-                Deposit
-              </button> -->
-            </div>
+            <WCard client:load account={account} />
           </div>
         </div>
       </div>
@@ -82,7 +69,7 @@ const account = isAuth.user.account;
             <p class="text-base text-white/80">Total Withdrawal</p>
 
             <p class="text-2xl font-semibold text-white">
-              ${account.withdrawals}
+              $ {account.withdrawals}
             </p>
           </div>
 
@@ -90,7 +77,7 @@ const account = isAuth.user.account;
             <p class="text-base text-white/80">Total Deposit</p>
 
             <p class="text-2xl font-semibold text-white">
-              ${account.deposits}
+              $ {account.deposits}
             </p>
           </div>
         </div>

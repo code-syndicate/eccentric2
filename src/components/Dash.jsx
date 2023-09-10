@@ -1,7 +1,13 @@
-import Balances from "./Balances";
+import { setWithdrawPopup } from "../lib/atoms";
 
 function Dash({ auth }) {
   const account = auth.user.account;
+
+  function withdraw() {
+    setWithdrawPopup({
+      show: true,
+    });
+  }
 
   return (
     <div className=" px-4  lg:pt-12 space-y-6">
@@ -14,7 +20,7 @@ function Dash({ auth }) {
 
             <span className="text-2xl lg:text-2xl font-semibold">
               {" "}
-              ${account.balance}
+              $ {account.balance}
             </span>
           </div>
         </div>
@@ -25,7 +31,7 @@ function Dash({ auth }) {
 
             <span className="text-2xl lg:text-2xl font-semibold">
               {" "}
-              ${account.bonus}
+              $ {account.bonus}
             </span>
           </div>
         </div>
@@ -39,12 +45,13 @@ function Dash({ auth }) {
 
             <p className="text-2xl lg:text-2xl text-[#3ebf81]  font-semibold text-center">
               {" "}
-              ${account.bonus + account.balance}
+              $ {account.bonus + account.balance}
             </p>
           </div>
 
           <div className="self-center w-full flex flex-row justify-start items-center mt-4">
             <button
+              onClick={withdraw}
               disabled={account.bonus + account.balance < 100}
               className=" px-3 py-1 text-sm rounded-md bg-[#3ebf81]  text-center disabled:opacity-40 disabled:pointer-events-none font-normal text-white/80  hover:bg-[#3ebf81]/80 transition-flow"
             >
