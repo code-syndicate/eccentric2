@@ -40,7 +40,10 @@ function Header({ user }) {
             <BsChat className="text-text1/80 text-xl " />
           </div>
 
-          <div className="bg-bg1 border border-white/0 hover:border-white/60 cursor-pointer transition-flow relative rounded-xl p-3">
+          <a
+            href="/settings"
+            className="bg-bg1 border border-white/0 hover:border-white/60 cursor-pointer transition-flow relative rounded-xl p-3"
+          >
             <BsBell className="text-text1/80 text-xl " />
 
             {user?.notifications?.filter((c) => !c.isRead).length > 0 && (
@@ -51,10 +54,13 @@ function Header({ user }) {
                 </span>
               </div>
             )}
-          </div>
+          </a>
         </div>
 
-        <div className="flex flex-row justify-between items-center space-x-6">
+        <a
+          href="/settings"
+          className="flex flex-row justify-between items-center space-x-6"
+        >
           <img
             src={AvatarImage}
             alt="Avatar"
@@ -70,7 +76,7 @@ function Header({ user }) {
               <span className="text-sm text-red-500"> Admin </span>
             )}
           </div>
-        </div>
+        </a>
       </div>
     </header>
   );

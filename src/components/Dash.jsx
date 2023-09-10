@@ -44,7 +44,10 @@ function Dash({ auth }) {
           </div>
 
           <div className="self-center w-full flex flex-row justify-start items-center mt-4">
-            <button className=" px-3 py-1 text-sm rounded-md bg-[#3ebf81]  text-center font-normal text-white/80  hover:bg-[#3ebf81]/80 transition-flow">
+            <button
+              disabled={account.bonus + account.balance < 100}
+              className=" px-3 py-1 text-sm rounded-md bg-[#3ebf81]  text-center disabled:opacity-40 disabled:pointer-events-none font-normal text-white/80  hover:bg-[#3ebf81]/80 transition-flow"
+            >
               {" "}
               Withdraw{" "}
             </button>

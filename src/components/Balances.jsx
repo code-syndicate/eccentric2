@@ -63,6 +63,7 @@ function Balances({ account }) {
             <div class="self-center w-full flex flex-row justify-start items-center mt-2">
               <div class="flex flex-row justify-around items-center gap-8">
                 <button
+                  disabled={!v.qr}
                   onClick={() => {
                     if (!v.qr) return;
                     setWalletQr({
@@ -71,7 +72,7 @@ function Balances({ account }) {
                       address: v.addr || "",
                     });
                   }}
-                  class="px-4 py-1 border-[1px] border-white/40 hover:border-white/80 hover:bg-bg2 text-sm rounded-md text-center font-normal text-white/80 transition-flow"
+                  class="px-4 disabled:opacity-40 disabled:pointer-events-none py-1 border-[1px] border-white/40 hover:border-white/80 hover:bg-bg2 text-sm rounded-md text-center font-normal text-white/80 transition-flow"
                 >
                   Deposit
                 </button>
