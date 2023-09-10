@@ -10,8 +10,9 @@ import { makeUrl, fetchUtil } from "../lib/utils";
 import config from "../config";
 import Spinner from "./Spinner";
 import { setWithdrawPopup, $withdrawPopup } from "../lib/atoms";
+import { startTransition } from "react";
 
-const schema = Yup.object().shape({
+const schema1 = Yup.object().shape({
   bankName: Yup.string()
     .required("Bank name is required")
     .min(3, "Must be 3 characters or more")
@@ -21,17 +22,9 @@ const schema = Yup.object().shape({
     .required("SWIFT is required")
     .min(3, "Must be 3 characters or more"),
 
-  address: Yup.string()
-    .required("Address is required")
-    .min(20, "Must be 20 characters or more"),
-
   channel: Yup.string()
     .required("Payout Mode is required")
     .oneOf(["bank", "crypto"], "Invalid payout mode"),
-
-  wallet: Yup.string()
-    .required("Wallet is required")
-    .oneOf(["bitcoin", "ethereum"], "Invalid wallet"),
 
   bankNumber: Yup.number()
     .positive("Bank Number must be a positive number")
@@ -44,8 +37,27 @@ const schema = Yup.object().shape({
     .required("Email is required"),
 });
 
+const schema2 = Yup.object().shape({
+  address: Yup.string()
+    .required("Address is required")
+    .min(20, "Must be 20 characters or more"),
+
+  channel: Yup.string()
+    .required("Payout Mode is required")
+    .oneOf(["bank", "crypto"], "Invalid payout mode"),
+
+  wallet: Yup.string()
+    .required("Wallet is required")
+    .oneOf(["bitcoin", "ethereum"], "Invalid wallet"),
+
+  email: Yup.string()
+    .email(" Invalid email address ")
+    .required("Email is required"),
+});
+
 export default function WithdrawPopup({ user }) {
   const [loading, setLoading] = useState(false);
+  const [isBank, setIsBank] = useState(true);
 
   const { show } = useStore($withdrawPopup);
 
@@ -123,7 +135,7 @@ export default function WithdrawPopup({ user }) {
           </h2>
 
           <Formik
-            validationSchema={schema}
+            validationSchema={isBank ? schema1 : schema2}
             initialValues={{
               email: user?.email,
               wallet: "bitcoin",
@@ -137,6 +149,19 @@ export default function WithdrawPopup({ user }) {
           >
             {({ isValid, values }) => {
               // console.log(errors);
+
+              if (values.channel === "bank" && !isBank) {
+                startTransition(() => {
+                  setIsBank(true);
+                });
+              }
+
+              if (values.channel === "crypto" && isBank) {
+                startTransition(() => {
+                  setIsBank(false);
+                });
+              }
+
               return (
                 <Form className="grid grid-cols-2 gap-x-8 gap-y-4 w-full justify-center items-center  py-6 ">
                   <div className="w-full">
