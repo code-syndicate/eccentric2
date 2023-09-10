@@ -1,13 +1,14 @@
 import BitCoinImage from "../assets/crypto/bitcoin.png";
+import AvatarImage from "../assets/avatar.png";
 
 function Profile({ user }) {
   return (
     <div className="col-span-6 lg:col-span-2 flex flex-col justify-start items-center space-y-8 bg-bg3 py-8 rounded-md lg:min-h-[500px]">
       <div className="w-full self-center flex flex-col justify-center items-center">
         <img
-          src={BitCoinImage}
-          className="w-2/5 rounded-full border border-white/20"
-          alt="bitcoin image"
+          src={AvatarImage}
+          className="w-1/5 rounded-full border border-white/20"
+          alt="avatar"
         />
       </div>
 
@@ -24,7 +25,7 @@ function Profile({ user }) {
         </p>
       </div>
 
-      <ul className="space-y-4  text-left w-full">
+      <ul className="space-y-4  flex flex-col justify-center items-start">
         <p className="text-yellow-600 my-2"> Actions </p>
 
         <a
