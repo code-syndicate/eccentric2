@@ -2,7 +2,7 @@ import LogoImage from "../assets/logo.png";
 import { BsSearch, BsChat, BsBell, BsX } from "react-icons/bs";
 import { VscMenu } from "react-icons/vsc";
 import { $sidebar, setShowSidebar } from "../lib/atoms";
-import AvatarImage from "../assets/avatar.png";
+import AvatarImage from "../assets/avatar.svg";
 import { useStore } from "@nanostores/react";
 
 function Header({ user }) {

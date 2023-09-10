@@ -8,6 +8,12 @@ export const $notify = atom({
   title: "Title",
 });
 
+export const $walletQr = atom({
+  show: false,
+  img: null,
+  address: null,
+});
+
 export const $sidebar = atom({
   show: false,
 });
@@ -27,6 +33,13 @@ export const setNotifyMessage = (obj) => {
     show,
     content,
     ...rest,
+  });
+};
+
+export const setWalletQr = (obj) => {
+  $walletQr.set({
+    ...$walletQr.get(),
+    ...obj,
   });
 };
 

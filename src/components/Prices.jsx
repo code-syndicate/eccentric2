@@ -1,5 +1,4 @@
 import Balances from "./Balances";
-import { BsSearch } from "react-icons/bs";
 
 function Prices({ auth }) {
   const account = auth.user.account;
