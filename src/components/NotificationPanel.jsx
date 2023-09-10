@@ -95,10 +95,13 @@ function NotificationPanel({ user }) {
         </div>
       )}
 
+      {[].s}
       {user.notifications.length > 0 && (
         <div className="min-h-full overflow-y-auto max-h-[90vh]">
           {user.notifications
-            .sort((b, a) => +a.date - +b.date)
+            .sort((b, a) => {
+              return new Date(a.date) - new Date(b.date);
+            })
             .map((c, i) => (
               <div
                 key={i}
@@ -117,7 +120,7 @@ function NotificationPanel({ user }) {
                     {new Date(c.date).toLocaleString()}{" "}
                   </p>
 
-                  <div className="flex flex-row justify-between items-center w-full">
+                  <div className="flex flex-row justify-start space-x-8 items-center w-full">
                     {!c.isRead && (
                       <button
                         onClick={() => markAsRead(c._id)}
