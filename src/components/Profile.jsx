@@ -1,4 +1,3 @@
-import BitCoinImage from "../assets/crypto/bitcoin.png";
 import AvatarImage from "../assets/avatar.png";
 
 function Profile({ user }) {
@@ -12,8 +11,8 @@ function Profile({ user }) {
         />
       </div>
 
-      <div className="space-y-4">
-        <p className="font-semibold text-center text-xl lg:text-2xl">
+      <div className="space-y-4 ">
+        <p className="font-semibold text-center text-white text-xl lg:text-2xl">
           {user?.firstName} {user?.lastName}
         </p>
         <p className="text-center text-sm text-[#3ebf81]/80 font-normal">

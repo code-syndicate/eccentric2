@@ -64,7 +64,7 @@ function SettingsActions({ user }) {
           " hidden ": active !== 0,
         })}
       >
-        <Profile />
+        <Profile user={user} />
       </div>
 
       <div

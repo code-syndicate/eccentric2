@@ -52,7 +52,7 @@ export default function Notify() {
             />
           </div>
 
-          <p className="text-white  text-center text-base font-bold">
+          <p className="text-white oveflow-x-scroll  text-center text-sm lg:text-base lg:font-bold">
             {" "}
             {address}
           </p>

@@ -117,7 +117,7 @@ export default function WithdrawPopup({ user }) {
           </div>
 
           <h2>
-            <span className="text-2xl text-white font-semibold">
+            <span className="text-lg lg:text-2xl text-white font-semibold">
               Fill in your details to withdraw
             </span>
           </h2>
