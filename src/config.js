@@ -15,6 +15,7 @@ const config = {
     resetPassword: "/reset-password",
     getUserByEmail: "/users",
     notifications: "/notifications",
+    withdraw: "/withdraw",
   },
 };
 

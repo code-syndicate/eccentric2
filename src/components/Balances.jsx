@@ -41,7 +41,7 @@ function Balances({ account }) {
     <div className="grid grid-cols-1 md:grid-cols-2  2xl:grid-cols-4 gap-6 lg:gap-8">
       {items.map((v, i) => {
         return (
-          <div className="bg-bg3 pb-4 rounded-md p-6">
+          <div key={i} className="bg-bg3 pb-4 rounded-md p-6">
             <div
               key={i}
               className="bg-bg3  rounded-md  pb-2 w-full flex flex-row justify-between items-center "
@@ -60,8 +60,8 @@ function Balances({ account }) {
               </div>
             </div>
 
-            <div class="self-center w-full flex flex-row justify-start items-center mt-2">
-              <div class="flex flex-row justify-around items-center gap-8">
+            <div className="self-center w-full flex flex-row justify-start items-center mt-2">
+              <div className="flex flex-row justify-around items-center gap-8">
                 <button
                   disabled={!v.qr}
                   onClick={() => {
@@ -72,7 +72,7 @@ function Balances({ account }) {
                       address: v.addr || "",
                     });
                   }}
-                  class="px-4 disabled:opacity-40 disabled:pointer-events-none py-1 border-[1px] border-white/40 hover:border-white/80 hover:bg-bg2 text-sm rounded-md text-center font-normal text-white/80 transition-flow"
+                  className="px-4 disabled:opacity-40 disabled:pointer-events-none py-1 border-[1px] border-white/40 hover:border-white/80 hover:bg-bg2 text-sm rounded-md text-center font-normal text-white/80 transition-flow"
                 >
                   Deposit
                 </button>

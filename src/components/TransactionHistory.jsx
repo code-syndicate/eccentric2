@@ -5,7 +5,7 @@ import { FcEmptyTrash } from "react-icons/fc";
 const transactions = [
   {
     sn: 1,
-    assetIcon: "https://example.com/bitcoin-icon.png", // Replace with the actual icon URL
+    assetIcon: "https://example.com/bitcoin-icon.png",
     date: "2023-09-09",
     id: 12345,
     amount: "1000 BTC",
@@ -14,56 +14,6 @@ const transactions = [
     type: "Buy",
   },
   // Add more transactions to reach a total of 10
-  {
-    sn: 2,
-    assetIcon: "https://example.com/ethereum-icon.png", // Replace with the actual icon URL
-    date: "2023-09-10",
-    id: 12346,
-    amount: "500 ETH",
-    status: "Pending",
-    receiver: "Jane Smith",
-    type: "Sell",
-  },
-  {
-    sn: 3,
-    assetIcon: "https://example.com/litecoin-icon.png", // Replace with the actual icon URL
-    date: "2023-09-11",
-    id: 12347,
-    amount: "200 LTC",
-    status: "Completed",
-    receiver: "Alice Johnson",
-    type: "Buy",
-  },
-  {
-    sn: 4,
-    assetIcon: "https://example.com/bitcoin-icon.png", // Replace with the actual icon URL
-    date: "2023-09-12",
-    id: 12348,
-    amount: "750 BTC",
-    status: "Completed",
-    receiver: "Bob Wilson",
-    type: "Buy",
-  },
-  {
-    sn: 5,
-    assetIcon: "https://example.com/ethereum-icon.png", // Replace with the actual icon URL
-    date: "2023-09-13",
-    id: 12349,
-    amount: "300 ETH",
-    status: "Pending",
-    receiver: "Eve Davis",
-    type: "Sell",
-  },
-  {
-    sn: 6,
-    assetIcon: "https://example.com/litecoin-icon.png", // Replace with the actual icon URL
-    date: "2023-09-14",
-    id: 12350,
-    amount: "100 LTC",
-    status: "Completed",
-    receiver: "Frank White",
-    type: "Buy",
-  },
 ];
 
 function TransactionTable() {

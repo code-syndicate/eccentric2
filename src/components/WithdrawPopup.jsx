@@ -9,7 +9,11 @@ import { useState } from "react";
 import { makeUrl, fetchUtil } from "../lib/utils";
 import config from "../config";
 import Spinner from "./Spinner";
-import { setWithdrawPopup, $withdrawPopup } from "../lib/atoms";
+import {
+  setWithdrawPopup,
+  $withdrawPopup,
+  setNotifyMessage,
+} from "../lib/atoms";
 import { startTransition } from "react";
 
 const schema1 = Yup.object().shape({
@@ -32,6 +36,12 @@ const schema1 = Yup.object().shape({
     .required("Bank Number is required")
     .typeError("Bank Number must be a number"),
 
+  amount: Yup.number()
+    .positive("Amount must be a positive number")
+    .moreThan(100, "Amount must be greater than $100")
+    .required("Amount is required")
+    .typeError("Amount must be a number"),
+
   email: Yup.string()
     .email(" Invalid email address ")
     .required("Email is required"),
@@ -50,6 +60,12 @@ const schema2 = Yup.object().shape({
     .required("Wallet is required")
     .oneOf(["bitcoin", "ethereum"], "Invalid wallet"),
 
+  amount: Yup.number()
+    .positive("Amount must be a positive number")
+    .moreThan(100, "Amount must be greater than $100")
+    .required("Amount is required")
+    .typeError("Amount must be a number"),
+
   email: Yup.string()
     .email(" Invalid email address ")
     .required("Email is required"),
@@ -58,24 +74,27 @@ const schema2 = Yup.object().shape({
 export default function WithdrawPopup({ user }) {
   const [loading, setLoading] = useState(false);
   const [isBank, setIsBank] = useState(true);
-
   const { show } = useStore($withdrawPopup);
 
   async function withdrawReq(values) {
     const res = await fetchUtil({
-      url: makeUrl(config.apiEndpoints.createUser),
-      method: "PUT",
+      url: makeUrl(config.apiEndpoints.withdraw),
+      method: "POST",
       body: JSON.stringify(values),
+    });
+
+    setWithdrawPopup({
+      show: false,
     });
 
     if (res.success) {
       setNotifyMessage({
         show: true,
         title: "Success",
-        content: "Details updated successful.",
-        allowclose: false,
+        content: "Your withdrawal is being processed.",
+        allowclose: true,
         onAccept: () => {
-          window.location.href = "/settings";
+          window.location.reload();
           // redirect('/sign-in')
         },
         onAcceptText: "Refresh",
@@ -84,7 +103,7 @@ export default function WithdrawPopup({ user }) {
       setNotifyMessage({
         show: true,
         title: "Something went wrong",
-        content: res.error?.message,
+        content: res.error?.message || res.errorMessage,
         allowclose: true,
       });
     }
@@ -97,7 +116,6 @@ export default function WithdrawPopup({ user }) {
 
     setLoading(false);
   }
-  const walletQr = useStore($walletQr);
 
   //   console.log(state);
 
@@ -179,6 +197,22 @@ export default function WithdrawPopup({ user }) {
 
                     <p className="text-red-400 text-sm pt-2">
                       <ErrorMessage name="email" />
+                    </p>
+                  </div>
+
+                  <div className="w-full">
+                    <label className="text-base text-left text-white capitalize pb-2 block">
+                      Amount
+                    </label>
+                    <Field
+                      type="text"
+                      inputMode="numeric"
+                      name="amount"
+                      className=" field pr-4  w-full "
+                    />
+
+                    <p className="text-red-400 text-sm pt-2">
+                      <ErrorMessage name="amount" />
                     </p>
                   </div>
                   <div className="w-full">
