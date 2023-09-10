@@ -7,25 +7,29 @@ const items = [
   {
     image: BitcoinImage,
     title: "Bitcoin",
+    key: "bitcoin",
   },
 
   {
     image: EthereumImage,
     title: "Ethereum",
+    key: "ethereum",
   },
 
   {
     image: DogecoinImage,
     title: "Dogecoin",
+    key: "dogecoin",
   },
 
   {
     image: BinanceImage,
     title: "Binance",
+    key: "smartchain",
   },
 ];
 
-function Balances() {
+function Balances({ account }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2  2xl:grid-cols-4 gap-6 lg:gap-8">
       {items.map((v, i) => {
@@ -39,7 +43,7 @@ function Balances() {
 
               <span className="text-2xl lg:text-2xl font-semibold">
                 {" "}
-                $1200.07{" "}
+                $ {account[v.key]}
               </span>
             </div>
 

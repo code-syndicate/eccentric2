@@ -1,0 +1,12 @@
+---
+export const prerender = false;
+
+import AuthLayout from "../layouts/AuthLayout.astro";
+import config from "../config";
+
+Astro.cookies.delete(config.authCookieKey);
+
+return Astro.redirect("/dashboard");
+---
+
+<AuthLayout title={"Sign Out - " + config.appName} />

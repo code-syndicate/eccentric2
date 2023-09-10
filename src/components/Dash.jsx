@@ -1,6 +1,8 @@
 import Balances from "./Balances";
 
-function Dash() {
+function Dash({ auth }) {
+  const account = auth.user.account;
+
   return (
     <div className=" px-4  lg:pt-12 space-y-6">
       {/* Balances Cards  */}
@@ -12,7 +14,7 @@ function Dash() {
 
             <span className="text-2xl lg:text-2xl font-semibold">
               {" "}
-              $1200.07{" "}
+              ${account.balance}
             </span>
           </div>
         </div>
@@ -23,7 +25,7 @@ function Dash() {
 
             <span className="text-2xl lg:text-2xl font-semibold">
               {" "}
-              $1200.07{" "}
+              ${account.bonus}
             </span>
           </div>
         </div>
@@ -37,7 +39,7 @@ function Dash() {
 
             <p className="text-2xl lg:text-2xl text-[#3ebf81]  font-semibold text-center">
               {" "}
-              $12,344.00
+              ${account.bonus + account.balance}
             </p>
           </div>
 

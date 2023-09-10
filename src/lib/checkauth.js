@@ -16,7 +16,9 @@ export async function checkAuth(authObj) {
   }
 
   if (res.data && res.data.email) {
-    return true;
+    return {
+      user: res.data,
+    };
   }
 
   return false;

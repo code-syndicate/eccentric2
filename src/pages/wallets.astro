@@ -22,11 +22,13 @@ const isAuth = await checkAuth({
 if (!isAuth) {
   return Astro.redirect("/sign-in");
 }
+
+const account = isAuth.user.account;
 ---
 
 <Layout title={config.appName}>
   <main class="md:ml-[20%] pt-20 md:w-[80%]">
-    <Prices />
+    <Prices auth={isAuth} />
 
     <div
       class="px-4 pt-8 lg:pt-8 grid grid-cols-12 gap-y-8 lg:gap-y-0 lg:gap-x-8 justify-center items-center"
@@ -46,7 +48,7 @@ if (!isAuth) {
 
             <p class="text-2xl lg:text-2xl text-white font-semibold text-left">
               {" "}
-              $12,344.00
+              $ {account.balance + account.bonus}
             </p>
           </div>
 
@@ -78,13 +80,17 @@ if (!isAuth) {
           <div class="space-y-2">
             <p class="text-base text-white/80">Total Withdrawal</p>
 
-            <p class="text-2xl font-semibold text-white">$10,3848</p>
+            <p class="text-2xl font-semibold text-white">
+              ${account.withdrawals}
+            </p>
           </div>
 
           <div class="space-y-2">
             <p class="text-base text-white/80">Total Deposit</p>
 
-            <p class="text-2xl font-semibold text-white">$8,3848 USD</p>
+            <p class="text-2xl font-semibold text-white">
+              ${account.deposits}
+            </p>
           </div>
         </div>
       </div>

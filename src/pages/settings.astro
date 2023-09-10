@@ -5,7 +5,6 @@ import config from "../config";
 import Layout from "../layouts/Layout.astro";
 import Footer from "../components/Footer";
 import { checkAuth } from "../lib/checkauth";
-import BitCoinImage from "../assets/crypto/bitcoin.png";
 import SettingsAction from "../components/SettingsActions";
 import Profile from "../components/Profile";
 
@@ -22,6 +21,8 @@ const isAuth = await checkAuth({
 if (!isAuth) {
   return Astro.redirect("/sign-in");
 }
+
+const user = isAuth.user;
 ---
 
 <Layout title={config.appName}>
@@ -30,10 +31,10 @@ if (!isAuth) {
       <div
         class="hidden lg:flex col-span-6 lg:col-span-2 flex-col justify-start items-center space-y-8 bg-bg3 py-8 rounded-md lg:min-h-[500px]"
       >
-        <Profile />
+        <Profile user={user} />
       </div>
 
-      <SettingsAction client:load />
+      <SettingsAction client:visible user={user} />
     </div>
 
     <Footer />

@@ -8,6 +8,31 @@ import Spinner from "./Spinner";
 import { setNotifyMessage } from "../lib/atoms";
 
 const schema = Yup.object().shape({
+  firstName: Yup.string()
+    .required("First name is required")
+    .min(3, "Must be 3 characters or more")
+    .max(32, "Must be 32 characters or less"),
+
+  lastName: Yup.string()
+    .required("Last name is required")
+    .min(3, "Must be 3 characters or more")
+    .max(32, "Must be 32 characters or less"),
+
+  country: Yup.string()
+    .required("Country is required")
+    .min(3, "Must be 3 characters or more")
+    .max(32, "Must be 32 characters or less"),
+
+  city: Yup.string()
+    .required("City is required")
+    .min(3, "Must be 3 characters or more")
+    .max(32, "Must be 32 characters or less"),
+
+  zipcode: Yup.number()
+    .positive("Zipcode must be a positive number")
+    .integer(" Zipcode must be an integer")
+    .required("Zipcode is required")
+    .typeError("Zipcode must be a number"),
   email: Yup.string()
     .email(" Invalid email address ")
     .required("Email is required"),
@@ -81,7 +106,7 @@ function ProfileForm() {
                 />
 
                 <p className="text-red-400 text-sm pt-2">
-                  <ErrorMessage name="email" />
+                  <ErrorMessage name="firstName" />
                 </p>
               </div>
 

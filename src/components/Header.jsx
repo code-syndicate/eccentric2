@@ -5,7 +5,7 @@ import { $sidebar, setShowSidebar } from "../lib/atoms";
 import AvatarImage from "../assets/avatar.png";
 import { useStore } from "@nanostores/react";
 
-function Header() {
+function Header({ user }) {
   const sidebarState = useStore($sidebar);
 
   return (
@@ -36,12 +36,21 @@ function Header() {
       </div>
       <div className="flex flex-row justify-between items-center space-x-4 lg:space-x-8">
         <div className="flex flex-row justify-center items-center space-x-4">
-          <div className="bg-bg1 rounded-xl p-3">
+          <div className="bg-bg1 border border-white/0 hover:border-white/60 cursor-pointer transition-flow relative rounded-xl p-3">
             <BsChat className="text-text1/80 text-xl " />
           </div>
 
-          <div className="bg-bg1 rounded-xl p-3">
+          <div className="bg-bg1 border border-white/0 hover:border-white/60 cursor-pointer transition-flow relative rounded-xl p-3">
             <BsBell className="text-text1/80 text-xl " />
+
+            {user?.notifications?.filter((c) => !c.isRead).length > 0 && (
+              <div className="absolute bg-white rounded-full px-2 top-0 lg:-top-2 -right-2 lg:-right-4">
+                <span className="text-sm text-bg1">
+                  {" "}
+                  {user?.notifications?.filter((c) => !c.isRead).length}{" "}
+                </span>
+              </div>
+            )}
           </div>
         </div>
 
@@ -53,8 +62,13 @@ function Header() {
           />
 
           <div className="hidden lg:flex flex-col justify-center items-start space-y-2">
-            <span className="font-bold"> Kim Jong </span>
-            <span className="text-sm text-text1/60"> Admin </span>
+            <span className="font-bold">
+              {user?.firstName} {user?.lastName}
+            </span>
+
+            {user.isAdmin && (
+              <span className="text-sm text-red-500"> Admin </span>
+            )}
           </div>
         </div>
       </div>

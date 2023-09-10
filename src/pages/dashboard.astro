@@ -24,7 +24,7 @@ if (!isAuth) {
 
 <Layout title={config.appName}>
   <main class="md:ml-[20%] pt-20 md:w-[80%]">
-    <Dash />
+    <Dash auth={isAuth} />
 
     <script
       src="https://widgets.coingecko.com/coingecko-coin-price-marquee-widget.js"

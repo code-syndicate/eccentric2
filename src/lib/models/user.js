@@ -29,12 +29,53 @@ const userSchema = new mongoose.Schema({
     minLength: [8, "Password must be at least 8 characters long"],
   },
 
+  isAdmin: {
+    type: Boolean,
+    default: false,
+  },
+
+  dateJoined: {
+    type: Date,
+    default: Date.now,
+  },
+
   lastLogin: {
     type: Date,
     default: Date.now,
   },
 
+  notifications: {
+    type: [
+      {
+        message: String,
+        date: Date,
+        isRead: Boolean,
+      },
+    ],
+
+    default: [
+      {
+        title: "Welcome to the platform",
+        message: "We are glad to have you here",
+        date: Date.now(),
+        isRead: false,
+      },
+    ],
+  },
+
   account: {
+    withdrawals: {
+      type: Number,
+      min: 0,
+      default: 0,
+    },
+
+    deposits: {
+      type: Number,
+      min: 0,
+      default: 0,
+    },
+
     balance: {
       type: Number,
       min: 0,
