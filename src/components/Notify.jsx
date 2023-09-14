@@ -47,7 +47,7 @@ export default function Notify() {
   if (!show) return null;
 
   return (
-    <Overlay z={3}>
+    <Overlay z={4}>
       <Slide
         right
         className="flex w-full flex-row justify-center items-center"

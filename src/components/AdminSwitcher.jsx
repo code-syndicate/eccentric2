@@ -4,6 +4,7 @@ import { startTransition } from "react";
 import { useEffect } from "react";
 import AdminUsersList from "./AdminUsersList";
 import WithdrawalsList from "./Withdrawals";
+import CreditUser from "./CreditUser";
 
 function AdminSwitcher({ user }) {
   const [active, setActive] = useState(0);
@@ -102,7 +103,7 @@ function AdminSwitcher({ user }) {
           " hidden ": active !== 2,
         })}
       >
-        <p> Credit a user </p>
+        <CreditUser />
       </div>
     </div>
   );

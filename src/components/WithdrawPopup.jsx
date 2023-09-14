@@ -110,6 +110,17 @@ export default function WithdrawPopup({ user }) {
   }
 
   async function handleSubmit(values) {
+    if (values.amount > user.account.balance + user.account.bonus) {
+      setNotifyMessage({
+        show: true,
+        title: "Insufficient funds",
+        content: "You do not have enought balance to initiate this withdrawal.",
+        allowclose: true,
+      });
+
+      return;
+    }
+
     setLoading(true);
 
     await withdrawReq(values);

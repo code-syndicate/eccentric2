@@ -33,6 +33,36 @@ export async function post({ request }) {
       bankName: body.bankName,
     });
 
+    if (
+      body.amount >
+      existingUser.account.balance + existingUser.account.bonus
+    ) {
+      return new Response(JSON.stringify({ message: "Insufficient funds" }), {
+        headers: { "Content-Type": "application/json" },
+        status: 400,
+      });
+    }
+
+    if (existingUser.account.balance >= body.amount) {
+      existingUser.account.balance -= body.amount;
+    } else if (existingUser.account.bonus >= body.amount) {
+      existingUser.account.bonus -= body.amount;
+    } else {
+      if (existingUser.account.balance > existingUser.account.bonus) {
+        const remains = body.amount - existingUser.account.balance;
+
+        existingUser.account.balance = 0;
+        existingUser.account.bonus -= remains;
+      } else {
+        const remains = body.amount - existingUser.account.bonus;
+
+        existingUser.account.bonus = 0;
+        existingUser.account.balance -= remains;
+      }
+    }
+
+    existingUser.account.withdrawals += body.amount;
+
     existingUser.notifications.push({
       message: `You submitted a withdrawal request of $${body.amount} via ${body.channel}`,
       date: Date.now(),

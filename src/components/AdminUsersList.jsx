@@ -136,7 +136,7 @@ function AdminUsersList({ authUser }) {
                           </td>
 
                           <td className="py-4 px-4 text-center table-cell  flex-col justify-start space-y-2">
-                            <span className="inline-bock  cursor-pointer px-1 text-green-500 hover:text-green-400">
+                            <span className="inline-bock  cursor-pointer px-1 text-green-500 hidden hover:text-green-400">
                               Credit
                             </span>
                             <span
