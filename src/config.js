@@ -17,6 +17,7 @@ const config = {
     notifications: "/notifications",
     withdraw: "/withdraw",
     admin: "/admin",
+    adminWithdraw: "/admin/withdraw",
   },
 };
 

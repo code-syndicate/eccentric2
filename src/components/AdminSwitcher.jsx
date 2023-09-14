@@ -3,6 +3,7 @@ import { useState } from "react";
 import { startTransition } from "react";
 import { useEffect } from "react";
 import AdminUsersList from "./AdminUsersList";
+import WithdrawalsList from "./Withdrawals";
 
 function AdminSwitcher({ user }) {
   const [active, setActive] = useState(0);
@@ -92,7 +93,7 @@ function AdminSwitcher({ user }) {
           " hidden ": active !== 1,
         })}
       >
-        <p> Withdrawals </p>
+        <WithdrawalsList authUser={user} />
       </div>
 
       <div

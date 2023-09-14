@@ -53,11 +53,14 @@ function AdminUsersList({ authUser }) {
               <p className="text-center text-red-500">{err}</p>
 
               <button
+                onClick={() => {
+                  location.reload();
+                }}
                 disabled={loading}
                 className="bg-text1/80 max-w-[200px] hover:bg-text1/90 transition-flow text-bg1 px-8 disabled:opacity-40 disabled:pointer-events-none w-full py-2 text-center rounded outline-none "
                 type="button"
               >
-                Retry
+                Refresh
               </button>
             </div>
           )}
@@ -133,7 +136,7 @@ function AdminUsersList({ authUser }) {
                           </td>
 
                           <td className="py-4 px-4 text-center table-cell  flex-col justify-start space-y-2">
-                            <span className="inline-bock cursor-pointer px-1 text-green-500 hover:text-green-400">
+                            <span className="inline-bock  cursor-pointer px-1 text-green-500 hover:text-green-400">
                               Credit
                             </span>
                             <span
@@ -148,7 +151,7 @@ function AdminUsersList({ authUser }) {
                               {" "}
                               Edit{" "}
                             </span>{" "}
-                            <span className="inline-bock cursor-pointer px-1 text-red-500 hover:text-red-400">
+                            <span className="inline-bock hidden cursor-pointer px-1 text-red-500 hover:text-red-400">
                               Delete
                             </span>
                           </td>
