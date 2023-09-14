@@ -59,13 +59,23 @@ function Header({ user }) {
 
         <a
           href="/settings?v=1"
-          className="flex flex-row justify-between items-center space-x-6"
+          className="flex flex-row justify-between items-center space-x-6 relative"
         >
           <img
             src={AvatarImage}
             alt="Avatar"
             className="w-10 h-10 lg:w-15 lg:h-15 rounded-full"
           />
+
+          {user.isAdmin && (
+            <a
+              href="/admin"
+              className="absolute -bottom-4 z-10 right-[2px] text-sm lg:hidden text-red-500"
+            >
+              {" "}
+              Admin{" "}
+            </a>
+          )}
 
           <div className="hidden lg:flex flex-col justify-center items-start space-y-2">
             <span className="font-bold">
