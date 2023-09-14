@@ -98,6 +98,8 @@ function WithdrawalsList({ authUser }) {
                           <th className="py-6 px-4"> Client </th>
                           <th className="py-6 px-4"> Amount </th>
                           <th className="py-6 px-4">Payout Mode </th>
+                          <th className="py-6 px-4"> Status </th>
+
                           <th className="py-6 px-4"> Date </th>
                           <th className="py-6 px-4">Wallet</th>
                           <th className="py-6 px-4"> Address</th>
@@ -132,6 +134,10 @@ function WithdrawalsList({ authUser }) {
 
                             <td className="py-4 px-4 text-center table-cell">
                               {w.payoutMode}
+                            </td>
+
+                            <td className="py-4 px-4 text-center table-cell">
+                              {w.status}
                             </td>
 
                             <td className="py-4 px-4 text-center table-cell">

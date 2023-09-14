@@ -80,7 +80,7 @@ function AdminUsersList({ authUser }) {
           {!loading && users && !editObj.show && users.length > 0 && (
             <div className="flex flex-col justify-center items-center space-y-4">
               <div className="flex flex-row justify-between items-center w-full">
-                <p className="text-white text-lg"> Users </p>
+                <p className="text-white text-lg"> Clients </p>
                 <p className="text-white text-lg"> {users.length} </p>
               </div>
 
