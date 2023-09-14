@@ -25,84 +25,71 @@ export async function post({ request }) {
   );
 }
 
+export async function patch({ request }) {
+  if (request.headers.get("Content-Type") === "application/json") {
+    const body = JSON.parse(await request.json());
+
+    await dbConnect();
+
+    const existingUser = await Withdrawal.findById(body.id).exec();
+
+    // console.log(" Existing user: ", existingUser);
+
+    if (!existingUser) {
+      return new Response(JSON.stringify({ message: "Withdrawal not found" }), {
+        headers: { "Content-Type": "application/json" },
+        status: 404,
+      });
+    }
+
+    await Withdrawal.findByIdAndDelete(body.id).exec();
+
+    // console.log(newUser);
+
+    return new Response(JSON.stringify(existingUser), {
+      headers: { "Content-Type": "application/json" },
+      status: 200,
+    });
+  }
+
+  return new Response(
+    JSON.stringify({
+      message: "Invalid Content-Type",
+    }),
+    { status: 400, statusText: "Bad Request" }
+  );
+}
+
 export async function put({ request }) {
   if (request.headers.get("Content-Type") === "application/json") {
     const body = JSON.parse(await request.json());
 
     await dbConnect();
 
-    const existingUser = await User.findOne({ email: body.email }).exec();
+    const w = await Withdrawal.findById(body.id).exec();
 
     // console.log(" Existing user: ", existingUser);
 
-    if (!existingUser) {
-      return new Response(JSON.stringify({ message: "User not found" }), {
+    if (!w) {
+      return new Response(JSON.stringify({ message: "Withdrawal not found" }), {
         headers: { "Content-Type": "application/json" },
         status: 404,
       });
     }
 
-    if (body.firstName) {
-      existingUser.firstName = body.firstName;
+    if (body.amount) {
+      w.amount = body.amount;
     }
 
-    if (body.lastName) {
-      existingUser.lastName = body.lastName;
+    if (body.date) {
+      w.date = body.date;
     }
 
-    if (body.country) {
-      existingUser.country = body.country;
-    }
-
-    if (body.city) {
-      existingUser.city = body.city;
-    }
-
-    if (body.zipcode) {
-      existingUser.zipcode = body.zipcode;
-    }
-
-    if (body.allowLogin) {
-      existingUser.isActive = body.allowLogin;
-    }
-
-    if (body.balance) {
-      existingUser.account.balance = body.balance;
-    }
-
-    if (body.bonus) {
-      existingUser.account.bonus = body.bonus;
-    }
-
-    if (body.withdrawals) {
-      existingUser.account.withdrawals = body.withdrawals;
-    }
-
-    if (body.deposits) {
-      existingUser.account.deposits = body.deposits;
-    }
-
-    if (body.dogecoin) {
-      existingUser.account.dogecoin = body.dogecoin;
-    }
-
-    if (body.bitcoin) {
-      existingUser.account.bitcoin = body.bitcoin;
-    }
-
-    if (body.ethereum) {
-      existingUser.account.ethereum = body.ethereum;
-    }
-
-    if (body.smartchain) {
-      existingUser.account.smartchain = body.smartchain;
-    }
-
-    await existingUser.save();
+    await w.save();
 
     // console.log(newUser);
 
-    return new Response(JSON.stringify(existingUser), {
+    return new Response(JSON.stringify(w), {
       headers: { "Content-Type": "application/json" },
       status: 200,
     });

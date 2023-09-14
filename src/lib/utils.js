@@ -23,7 +23,7 @@ export async function fetchUtil({
     credentials: "same-origin",
   };
 
-  if (method === "POST" || method === "PUT") {
+  if (method === "POST" || method === "PUT" || method === "PATCH") {
     if (formEncoded) {
       const form = new FormData();
       for (let key of Object.keys(body)) {

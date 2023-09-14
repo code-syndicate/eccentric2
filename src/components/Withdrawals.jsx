@@ -4,7 +4,7 @@ import config from "../config";
 import { setNotifyMessage } from "../lib/atoms";
 import { useState } from "react";
 import Spinner from "./Spinner";
-import EditUser from "./EditUser";
+import EditWithdraw from "./EditWithdraw";
 
 function WithdrawalsList({ authUser }) {
   const [loading, setLoading] = useState(false);
@@ -14,6 +14,45 @@ function WithdrawalsList({ authUser }) {
     show: false,
     data: null,
   });
+
+  async function deleteWithdrawal(id) {
+    if (!confirm("Delete withdrawal request?")) {
+      return;
+    }
+
+    setLoading(true);
+
+    const res = await fetchUtil({
+      url: makeUrl(config.apiEndpoints.adminWithdraw),
+      method: "PATCH",
+      body: JSON.stringify({
+        id,
+      }),
+    });
+
+    if (res.success) {
+      setNotifyMessage({
+        show: true,
+        title: "Success",
+        content: "Deletion successful.",
+        allowclose: false,
+        onAccept: () => {
+          window.location.href = "/admin?v=1";
+          // redirect('/sign-in')
+        },
+        onAcceptText: "Refresh",
+      });
+    } else {
+      setNotifyMessage({
+        show: true,
+        title: "Something went wrong",
+        content: res?.error?.message || res?.errorMessage,
+        allowclose: true,
+      });
+    }
+
+    setLoading(false);
+  }
 
   async function getWithdrawals(page = 1) {
     setLoading(true);
@@ -66,8 +105,8 @@ function WithdrawalsList({ authUser }) {
           )}
 
           {editObj.show && (
-            <EditUser
-              user={editObj.user}
+            <EditWithdraw
+              data={editObj.data}
               closeMe={() => {
                 setEditObj({
                   ...editObj,
@@ -168,10 +207,23 @@ function WithdrawalsList({ authUser }) {
                               <span className="inline-bock  cursor-pointer px-1 text-green-500 hover:text-green-400">
                                 Approve
                               </span>
-                              <span className="inline-bock cursor-pointer px-1 text-yellow-500 hover:text-yellow-400">
+                              <span
+                                onClick={() => {
+                                  setEditObj({
+                                    show: true,
+                                    data: w,
+                                  });
+                                }}
+                                className="inline-bock cursor-pointer px-1 text-yellow-500 hover:text-yellow-400"
+                              >
                                 Edit
                               </span>{" "}
-                              <span className="inline-bock  cursor-pointer px-1 text-red-500 hover:text-red-400">
+                              <span
+                                onClick={async () => {
+                                  await deleteWithdrawal(w._id);
+                                }}
+                                className="inline-bock  cursor-pointer px-1 text-red-500 hover:text-red-400"
+                              >
                                 Delete
                               </span>
                             </td>
