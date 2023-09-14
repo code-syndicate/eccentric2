@@ -16,6 +16,7 @@ const config = {
     getUserByEmail: "/users",
     notifications: "/notifications",
     withdraw: "/withdraw",
+    admin: "/admin",
   },
 };
 

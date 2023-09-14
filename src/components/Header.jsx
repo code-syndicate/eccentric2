@@ -73,7 +73,10 @@ function Header({ user }) {
             </span>
 
             {user.isAdmin && (
-              <span className="text-sm text-red-500"> Admin </span>
+              <a href="/admin" className="text-sm text-red-500">
+                {" "}
+                Admin{" "}
+              </a>
             )}
           </div>
         </a>

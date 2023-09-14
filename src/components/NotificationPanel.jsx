@@ -27,7 +27,7 @@ function NotificationPanel({ user }) {
         content: "Notification marked as read.",
         allowclose: true,
         onAccept: () => {
-          window.location.href = "/settings";
+          window.location.href = "/settings?v=2";
           // redirect('/sign-in')
         },
 
@@ -64,7 +64,7 @@ function NotificationPanel({ user }) {
         content: "Notification deleted.",
         allowclose: true,
         onAccept: () => {
-          window.location.href = "/settings";
+          window.location.href = "/settings?v=2";
           // redirect('/sign-in')
         },
 
@@ -95,7 +95,6 @@ function NotificationPanel({ user }) {
         </div>
       )}
 
-      {[].s}
       {user.notifications.length > 0 && (
         <div className="min-h-full overflow-y-auto max-h-[90vh]">
           {user.notifications

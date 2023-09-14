@@ -1,0 +1,33 @@
+---
+export const prerender = false;
+
+import config from "../../config";
+import Layout from "../../layouts/Layout.astro";
+import Footer from "../../components/Footer";
+import AdminSwitcher from "../../components/AdminSwitcher";
+import { checkAdminAuth } from "../../lib/checkauth";
+
+if (!Astro.cookies.has(config.authCookieKey)) {
+  return Astro.redirect("/sign-in");
+}
+
+const authUser = Astro.cookies.get(config.authCookieKey).value;
+
+const isAuth = await checkAdminAuth({
+  email: authUser,
+});
+
+if (!isAuth) {
+  return Astro.redirect("/dashboard");
+}
+---
+
+<Layout title={config.appName}>
+  <main class="md:ml-[20%] pt-20 lg:pt-32 md:w-[80%]">
+    <h1 class="text-xl font-bold text-left mb-4 px-4">Admin dashboard</h1>
+
+    <AdminSwitcher user={isAuth.user} client:load />
+
+    <Footer />
+  </main>
+</Layout>
