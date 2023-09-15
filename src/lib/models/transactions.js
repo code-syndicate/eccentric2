@@ -36,6 +36,8 @@ const withdrawalSchema = new mongoose.Schema({
     type: String,
   },
 
+ 
+
   swift: {
     type: String,
   },

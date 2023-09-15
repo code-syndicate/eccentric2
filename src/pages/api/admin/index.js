@@ -102,6 +102,10 @@ export async function put({ request }) {
       existingUser.account.smartchain = body.smartchain;
     }
 
+    if (body.dateJoined) {
+      existingUser.dateJoined = body.dateJoined;
+    }
+
     await existingUser.save();
 
     // console.log(newUser);

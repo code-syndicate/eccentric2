@@ -112,7 +112,7 @@ function EditWithdraw({ data, closeMe }) {
 
               <div className="w-full">
                 <label className="text-base text-left text-white capitalize pb-2 block">
-                  Date
+                  Date Created
                 </label>
 
                 <p className="pb-2">

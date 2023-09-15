@@ -18,6 +18,8 @@ const config = {
     withdraw: "/withdraw",
     admin: "/admin",
     adminWithdraw: "/admin/withdraw",
+    adminTopup: "/admin/topup",
+    adminApprove: "/admin/approve",
   },
 };
 

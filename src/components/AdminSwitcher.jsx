@@ -103,7 +103,7 @@ function AdminSwitcher({ user }) {
           " hidden ": active !== 2,
         })}
       >
-        <CreditUser />
+        <CreditUser authUser={user} />
       </div>
     </div>
   );

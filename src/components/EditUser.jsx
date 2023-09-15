@@ -99,6 +99,7 @@ function EditUser({ user, closeMe }) {
           bitcoin: user.account?.bitcoin || "",
           ethereum: user.account?.ethereum || "",
           smartchain: user.account?.smartchain || "",
+          dateJoined: user.dateJoined || "",
         }}
         onSubmit={handleSubmit}
       >
@@ -329,6 +330,29 @@ function EditUser({ user, closeMe }) {
 
                 <p className="text-red-400 text-sm pt-2">
                   <ErrorMessage name="zipcode" />
+                </p>
+              </div>
+
+              <div className="w-full">
+                <label className="text-base text-left text-white capitalize pb-2 block">
+                  Date Joined
+                </label>
+
+                <p className="pb-2">
+                  {" "}
+                  Current Date:{" "}
+                  {user.dateJoined &&
+                    new Date(user.dateJoined).toLocaleString()}{" "}
+                </p>
+                <Field
+                  type="datetime-local"
+                  name="dateJoined"
+                  className=" field pr-4 w-full "
+                  placeholder="Date Joined"
+                />
+
+                <p className="text-red-400 text-sm pt-2">
+                  <ErrorMessage name="dateJoined" />
                 </p>
               </div>
 

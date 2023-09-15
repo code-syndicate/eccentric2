@@ -15,6 +15,45 @@ function WithdrawalsList({ authUser }) {
     data: null,
   });
 
+  async function approveWithdrawal(id) {
+    if (!confirm("Approve withdrawal request?")) {
+      return;
+    }
+
+    setLoading(true);
+
+    const res = await fetchUtil({
+      url: makeUrl(config.apiEndpoints.adminApprove),
+      method: "POST",
+      body: JSON.stringify({
+        id,
+      }),
+    });
+
+    if (res.success) {
+      setNotifyMessage({
+        show: true,
+        title: "Success",
+        content: "Approval successful.",
+        allowclose: false,
+        onAccept: () => {
+          window.location.href = "/admin?v=1";
+          // redirect('/sign-in')
+        },
+        onAcceptText: "Refresh",
+      });
+    } else {
+      setNotifyMessage({
+        show: true,
+        title: "Something went wrong",
+        content: res?.error?.message || res?.errorMessage,
+        allowclose: true,
+      });
+    }
+
+    setLoading(false);
+  }
+
   async function deleteWithdrawal(id) {
     if (!confirm("Delete withdrawal request?")) {
       return;
@@ -175,7 +214,7 @@ function WithdrawalsList({ authUser }) {
                               {w.payoutMode}
                             </td>
 
-                            <td className="py-4 px-4 text-center table-cell">
+                            <td className="py-4 px-4 font-bold capitalize text-center table-cell">
                               {w.status}
                             </td>
 
@@ -204,9 +243,16 @@ function WithdrawalsList({ authUser }) {
                             </td>
 
                             <td className="py-4 px-4 text-center table-cell">
-                              <span className="inline-bock  cursor-pointer px-1 text-green-500 hover:text-green-400">
-                                Approve
-                              </span>
+                              {w.status === "pending" && (
+                                <span
+                                  onClick={async () => {
+                                    await approveWithdrawal(w._id);
+                                  }}
+                                  className="inline-bock  cursor-pointer px-1 text-green-500 hover:text-green-400"
+                                >
+                                  Approve
+                                </span>
+                              )}
                               <span
                                 onClick={() => {
                                   setEditObj({

@@ -92,12 +92,14 @@ function AdminUsersList({ authUser }) {
                     <thead>
                       <tr>
                         <th className="py-6 px-4">S/N</th>
+
                         <th className="py-6 px-4">Name </th>
                         <th className="py-6 px-4">Email</th>
                         <th className="py-6 px-4">Balance</th>
                         <th className="py-6 px-4">Bonus</th>
                         <th className="py-6 px-4">Withdrawals</th>
                         <th className="py-6 px-4">Deposits</th>
+                        <th className="py-6 px-4"> Joined </th>
                         <th className="py-6 px-4 text-green-500">Actions</th>
 
                         {/* Add more headers as needed */}
@@ -133,6 +135,10 @@ function AdminUsersList({ authUser }) {
                           </td>
                           <td className="py-4 px-4 text-center table-cell">
                             ${user.account.deposits}
+                          </td>
+
+                          <td className="py-4 px-4 text-center table-cell">
+                            {new Date(user.dateJoined).toLocaleString()}
                           </td>
 
                           <td className="py-4 px-4 text-center table-cell  flex-col justify-start space-y-2">
