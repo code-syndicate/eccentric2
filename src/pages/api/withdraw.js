@@ -63,6 +63,13 @@ export async function post({ request }) {
 
     existingUser.account.withdrawals += body.amount;
 
+    existingUser.history.push({
+      remark: `You initiated a withdrawal of $${body.amount}.`,
+      txType: "withdrawal",
+      amount: body.amount,
+      date: Date.now(),
+    });
+
     existingUser.notifications.push({
       message: `You submitted a withdrawal request of $${body.amount} via ${body.channel}`,
       date: Date.now(),

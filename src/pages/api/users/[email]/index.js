@@ -8,9 +8,18 @@ export async function get({ request, params }) {
 
   //   console.log(params);
 
-  const existingUser = await User.findOne({ email: params.email })
-    .lean()
-    .exec();
+  const existingUser = await User.findOne({ email: params.email }).exec();
+
+  if (!existingUser.history) {
+    existingUser.history = [];
+
+    await existingUser.save();
+  }
+
+  if (!existingUser.notifications) {
+    existingUser.notifications = [];
+    await existingUser.save();
+  }
 
   // console.log(" Existing user: ", existingUser);
 

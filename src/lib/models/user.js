@@ -49,6 +49,21 @@ const userSchema = new mongoose.Schema({
     default: Date.now,
   },
 
+  history: {
+    type: [
+      {
+        date: Date,
+        amount: Number,
+        txType: {
+          type: String,
+          enum: ["credit", "withdrawal"],
+        },
+        remark: String,
+        id: mongoose.Schema.Types.ObjectId,
+      },
+    ],
+  },
+
   notifications: {
     type: [
       {

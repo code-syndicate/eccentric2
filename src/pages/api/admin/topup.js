@@ -35,6 +35,13 @@ export async function post({ request }) {
       date: Date.now(),
     });
 
+    existingUser.history.push({
+      remark: `You received a credit of $${body.amount}.`,
+      txType: "credit",
+      amount: body.amount,
+      date: Date.now(),
+    });
+
     await existingUser.save();
 
     // console.log(newUser);
