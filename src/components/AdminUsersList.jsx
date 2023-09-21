@@ -116,6 +116,7 @@ function AdminUsersList({ authUser }) {
                           <td className="py-4 px-4 text-center table-cell">
                             {i + 1}
                           </td>
+                          {console.log(user)}
 
                           <td className="py-4 px-4 text-center table-cell">
                             {user.firstName} {user.lastName}{" "}
@@ -125,16 +126,16 @@ function AdminUsersList({ authUser }) {
                             {user.email}
                           </td>
                           <td className="py-4 px-4 text-center table-cell">
-                            ${user.account.balance}
+                            ${user.account?.balance}
                           </td>
                           <td className="py-4 px-4 text-center table-cell">
-                            ${user.account.bonus}
+                            ${user.account?.bonus}
                           </td>
                           <td className="py-4 px-4 text-center table-cell">
-                            ${user.account.withdrawals}
+                            ${user.account?.withdrawals}
                           </td>
                           <td className="py-4 px-4 text-center table-cell">
-                            ${user.account.deposits}
+                            ${user.account?.deposits}
                           </td>
 
                           <td className="py-4 px-4 text-center table-cell">
