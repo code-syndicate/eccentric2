@@ -5,7 +5,7 @@ const config = {
 
   apiUrl: import.meta.env.PROD
     ? `https://eccentric-eight.vercel.app/api`
-    : "http://localhost:3000/api",
+    : "http://localhost:3001/api",
 
   authCookieKey: "AUTH_USER_ECCENTRIC",
   apiEndpoints: {

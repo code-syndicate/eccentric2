@@ -2,10 +2,10 @@ import { atom } from "nanostores";
 
 export const $notify = atom({
   show: false,
-  message: "Hello people",
-  content: "Hello people",
+  message: "Something went wrong!",
+  content: "Something went wrong!",
   level: "info",
-  title: "Title",
+  title: "Notification",
 });
 
 export const $walletQr = atom({
