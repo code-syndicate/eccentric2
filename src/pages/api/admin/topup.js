@@ -14,11 +14,11 @@ export async function post({ request }) {
       email: body.email.trim(),
     }).exec();
 
-    // console.log(" Existing user: ", existingUser);
-
     if (!existingUser) {
       return new Response(
-        JSON.stringify({ message: "User with email address not found." }),
+        JSON.stringify({
+          message: "Account with this email address does not exist.",
+        }),
         {
           headers: { "Content-Type": "application/json" },
           status: 404,
