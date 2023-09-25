@@ -64,8 +64,6 @@ export async function put({ request }) {
 
     const existingUser = await User.findOne({ email: body.email }).exec();
 
-    // console.log(" Existing user: ", existingUser);
-
     if (!existingUser) {
       return new Response(JSON.stringify({ message: "User not found" }), {
         headers: { "Content-Type": "application/json" },
