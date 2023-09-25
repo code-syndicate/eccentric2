@@ -46,13 +46,9 @@ export async function put({ request }) {
   if (request.headers.get("Content-Type") === "application/json") {
     const body = JSON.parse(await request.json());
 
-    // console.log("body: ", body);
-
     await dbConnect();
 
     const existingUser = await User.findOne({ email: body.email }).exec();
-
-    // console.log(" Existing user: ", existingUser);
 
     if (!existingUser) {
       return new Response(JSON.stringify({ message: "User not found" }), {
