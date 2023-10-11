@@ -169,7 +169,7 @@ function AdminUsersList({ authUser }) {
                   </table>
                 </div>
 
-                {/* Table ends  */}
+                {/* Table ends  here */}
               </div>
             </div>
           )}
