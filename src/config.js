@@ -1,7 +1,7 @@
 const config = {
-  appName: "𝕏-Crypto Brokerage",
+  appName: "EmuskFX",
   description:
-    "Moon Crypto is a cryptocurrency broker based in the United States. With a focus on simplicity, Moon Crypto allows you to buy and sell Bitcoin and other cryptocurrencies instantly and easily.",
+    "EmuskFX Crypto is a cryptocurrency broker based in the United States. With a focus on simplicity, Moon Crypto allows you to buy and sell Bitcoin and other cryptocurrencies instantly and easily.",
 
   apiUrl: import.meta.env.PUBLIC_API_URL || "http://localhost:3001/api",
 
