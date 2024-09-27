@@ -4,6 +4,8 @@ import DogecoinImage from "../assets/crypto/dogecoin.png";
 import BinanceImage from "../assets/crypto/binance.png";
 import BitcoinQr from "../assets/qr/bitcoin.jpeg";
 import EthereumQr from "../assets/qr/ethereum.jpeg";
+import BinanceQr from "../assets/qr/binance.jpeg";
+
 import { setWalletQr } from "../lib/atoms";
 
 const items = [
@@ -12,7 +14,7 @@ const items = [
     title: "Bitcoin",
     key: "bitcoin",
     qr: BitcoinQr,
-    addr: "1KBzW2xZzBCBzHNKeCgGb8RU67kVRmpWef",
+    addr: "bc1qjdt2uqg5m2lqtankhe9lknqd5vwa58c7cyhdpn",
   },
 
   {
@@ -20,7 +22,7 @@ const items = [
     title: "Ethereum",
     key: "ethereum",
     qr: EthereumQr,
-    addr: "0xb33B4723Aec7EC6eaFE776d155f19FeC77624304",
+    addr: "0xa8304e8b3b4b01a43368fe912d10085e19472bd8",
   },
 
   {
@@ -33,6 +35,8 @@ const items = [
     image: BinanceImage,
     title: "Binance",
     key: "smartchain",
+    addr: "0x18ab89c22699ad4aaa52a1fcef44e4d6486c3834",
+    qr: BinanceQr,
   },
 ];
 
